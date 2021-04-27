@@ -19,7 +19,7 @@
                 //possibly ensure there are enough org licenses to create a user. Must be 80 characters or less.
                 User u = new User();
                 Profile p = [SELECT Id FROM profile WHERE name='Red Carpet Customer'];
-                System.debug(p);
+              
                 System.debug(p);
                 u.username = data.lastName + data.firstName + '@RedCarpet.com';
                 u.email = data.email;
