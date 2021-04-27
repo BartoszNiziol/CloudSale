@@ -9,5 +9,6 @@
       component.set('v.recordIds', ids);
       sessionStorage.removeItem('customSearch--recordIds');
     }
+    console.log('customerSearchResultList end of init');
   }
 })
