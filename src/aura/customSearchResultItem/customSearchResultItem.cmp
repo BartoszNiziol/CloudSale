@@ -8,13 +8,18 @@
     <aura:attribute name="recordError" type="String"/>
     <force:recordData aura:id="recordLoader"
                       recordId="{!v.recordId}"
-                      layoutType="COMPACT"
+                      layoutType="FULL"
                       targetRecord="{!v.record}"
                       targetFields="{!v.simpleRecord}"
                       targetError="{!v.recordError}"  />
     <!-- Display a header with details about the record -->
     <div class="slds-page-header" role="banner">
+        <img src="{!v.simpleRecord.Product_Image_Link__c}" width="100" height="100" style="float:left" />
         <p class="slds-text-heading--label">{!v.simpleRecord.Name}</p>
+        <p class="slds-avatar_profile-image-medium"></p>
+
+
+
         <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-left"><a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">Go to details</a></h1>
     </div>
     <!-- Display Lightning Data Service errors, if any -->
