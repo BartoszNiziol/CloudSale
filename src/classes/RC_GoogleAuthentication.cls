@@ -34,7 +34,7 @@
             } else {
                 User u = new User();
                 Profile p = [SELECT Id FROM profile WHERE name='Standard User'];
-                u.username = data.username + '@myorg.com';
+                u.username = data.username + '@RedCarpet.com';
                 u.email = data.email;
                 u.lastName = data.lastName;
                 u.firstName = data.firstName;
@@ -47,7 +47,7 @@
                 u.languagelocalekey = UserInfo.getLocale();
                 u.localesidkey = UserInfo.getLocale();
                 u.emailEncodingKey = 'UTF-8';
-                u.timeZoneSidKey = 'America/Los_Angeles';
+                u.timeZoneSidKey = 'Europe/Berlin';
                 u.profileId = p.Id;
                 return u;
             }
