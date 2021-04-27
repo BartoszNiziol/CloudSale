@@ -5,14 +5,17 @@
 public with sharing class RC_CustomSearchController {
     @AuraEnabled
     public static List<String> searchForIds(String searchText) {
-        List<Product2> results = [SELECT Id,Name FROM Product2 WHERE Name LIKE :searchText];
+        System.debug(searchText);
+        String likeSearchText = '%'+searchText+'%';
+        List<Product2> results = [SELECT Id,Name FROM Product2 WHERE Name LIKE :likeSearchText AND Family = 'Red Carpet Item'];
 
-        List<String> namesOfProducts = new List<String>();
+        List<String> ProductsIds = new List<String>();
         for (Product2 p : results){
-            namesOfProducts.add(p.Name);
+            ProductsIds.add(p.Id);
         }
-        
-        return  namesOfProducts;
+
+        System.debug(ProductsIds);
+        return  ProductsIds;
     }
 
 }
