@@ -17,8 +17,8 @@
         <div class="slds-col slds-size_1-of-1" style="color:rgb(191,208,98); font-size:30px; font-weight: bolder">
         {!v.simpleRecord.Name}
         </div>
-        <div class="slds-col slds-size_1-of-1" style="color:rgb(191,208,98); font-size:30px; font-weight: bolder">
-        {!v.simpleRecord.Price__c} €
+        <div class="slds-col slds-size_1-of-1" style="color:rgb(191,208,98); font-size:30px; font-weight: bolder; margin-top:26%">
+        Price: {!v.simpleRecord.Price__c} €
         </div>
     </div>
 </aura:component>
