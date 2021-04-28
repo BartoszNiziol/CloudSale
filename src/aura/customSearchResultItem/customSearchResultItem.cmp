@@ -13,14 +13,19 @@
                       targetFields="{!v.simpleRecord}"
                       targetError="{!v.recordError}"  />
     <!-- Display a header with details about the record -->
-    <div class="slds-page-header" role="banner">
-        <img src="{!v.simpleRecord.Product_Image_Link__c}" width="100" height="100" style="float:left" />
-        <p class="slds-text-heading--label">{!v.simpleRecord.Name}</p>
+    <div class="slds-grid" role="banner">
+        <div class="slds-col slds-size_2-of-12">
+            <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">
+        <img src="{!v.simpleRecord.Product_Image_Link__c}" width="200" height="300"  />
+            </a>
+        </div>
+             <div class="slds-col slds-size_10-of-12" >
+        <p class="slds-text-heading--medium">
+            <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}"> {!v.simpleRecord.Name}</a>
+</p>
         <p class="slds-avatar_profile-image-medium"></p>
-
-
-
-        <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-left"><a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">Go to details</a></h1>
+        <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom" style="text-align:bottom;"><a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">{!v.simpleRecord.Price__c} €</a></h1>
+             </div>
     </div>
     <!-- Display Lightning Data Service errors, if any -->
     <aura:if isTrue="{!not(empty(v.recordError))}">

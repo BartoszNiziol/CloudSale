@@ -1,0 +1,17 @@
+<!--
+ - Created by BRITENET on 28.04.2021.
+ -->
+
+<aura:component description="RC_ProductView" implements="force:hasRecordId, forceCommunity:availableForAllPageTypes"  access="global">
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      layoutType="FULL"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      targetError="{!v.recordError}"  />
+
+    <img src="{!v.simpleRecord.Product_Image_Link__c}" style="width:100%; height:100%;" />
+</aura:component>
