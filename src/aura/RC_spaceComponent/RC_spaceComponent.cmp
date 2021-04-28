@@ -1,0 +1,10 @@
+<!--
+ - Created by BRITENET on 28.04.2021.
+ -->
+
+<aura:component description="RC_spaceComponent" implements="forceCommunity:availableForAllPageTypes">
+    <div style="margin:40px">
+
+
+    </div>
+</aura:component>

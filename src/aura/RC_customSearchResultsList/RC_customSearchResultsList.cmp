@@ -1,0 +1,14 @@
+<!--
+ - Created by BRITENET on 28.04.2021.
+ -->
+
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute type="list" name="recordIds" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:if isTrue="{!not(empty(v.recordIds))}">
+    <aura:iteration items="{!v.recordIds}" var="id">
+        <c:RC_customSearchResultItem recordId="{!id}"/>
+    </aura:iteration>
+    </aura:if>
+</aura:component>
