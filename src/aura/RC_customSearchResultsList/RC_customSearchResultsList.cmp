@@ -7,6 +7,6 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
     <aura:iteration items="{!v.recordIds}" var="id">
-        <c:customSearchResultItem recordId="{!id}"/>
+        <c:RC_customSearchResultItem recordId="{!id}"/>
     </aura:iteration>
 </aura:component>

@@ -18,7 +18,7 @@
                     </div>
                 </aura:if>
                 <div class="slds-col">
-                    <c:verticalNav></c:verticalNav>
+                    <c:RC_verticalNav></c:RC_verticalNav>
                 </div>
                 <div class="slds-col">
                         {!v.sidebarFooter}
