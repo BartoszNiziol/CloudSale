@@ -11,21 +11,23 @@
                       layoutType="FULL"
                       targetRecord="{!v.record}"
                       targetFields="{!v.simpleRecord}"
-                      targetError="{!v.recordError}"  />
+                      targetError="{!v.recordError}"/>
     <!-- Display a header with details about the record -->
-    <div class="slds-grid" role="banner">
+    <div class="slds-grid" role="banner" style="border: 2px solid rgb(191,208,98); margin:5px;">
         <div class="slds-col slds-size_2-of-12">
             <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">
-        <img src="{!v.simpleRecord.Product_Image_Link__c}" width="200" height="300"  />
+                <img src="{!v.simpleRecord.Product_Image_Link__c}" width="200" height="300"/>
             </a>
         </div>
-             <div class="slds-col slds-size_10-of-12" >
-        <p class="slds-text-heading--medium">
-            <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}"> {!v.simpleRecord.Name}</a>
-</p>
-        <p class="slds-avatar_profile-image-medium"></p>
-        <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom" style="text-align:bottom;"><a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">{!v.simpleRecord.Price__c} €</a></h1>
-             </div>
+        <div class="slds-col slds-size_10-of-12" style="margin-left:5 px; ">
+            <p class="slds-text-heading_large">
+                <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}"> {!v.simpleRecord.Name}</a>
+            </p>
+            <p class="slds-avatar_profile-image-medium"></p>
+            <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom"
+                style="margin-top:10%"><a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">Price:
+                {!v.simpleRecord.Price__c} €</a></h1>
+        </div>
     </div>
     <!-- Display Lightning Data Service errors, if any -->
     <aura:if isTrue="{!not(empty(v.recordError))}">
