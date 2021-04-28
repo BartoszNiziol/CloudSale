@@ -7,10 +7,7 @@
       var action = component.get('c.searchForIds');
       action.setParams({searchText: searchText});
       action.setCallback(this, function(response) {
-          console.log(response);
         var state = response.getState();
-            console.log('customerSearchController state');
-            console.log(state);
         if (state === 'SUCCESS') {
           var ids = response.getReturnValue();
           sessionStorage.setItem('customSearch--recordIds', JSON.stringify(ids));

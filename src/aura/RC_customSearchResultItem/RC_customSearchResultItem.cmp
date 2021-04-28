@@ -12,7 +12,7 @@
                       targetRecord="{!v.record}"
                       targetFields="{!v.simpleRecord}"
                       targetError="{!v.recordError}"/>
-    <!-- Display a header with details about the record -->
+
     <div class="slds-grid" role="banner" style="border: 2px solid rgb(191,208,98); margin:5px;">
         <div class="slds-col slds-size_2-of-12">
             <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">
@@ -29,12 +29,5 @@
                 {!v.simpleRecord.Price__c} €</a></h1>
         </div>
     </div>
-    <!-- Display Lightning Data Service errors, if any -->
-    <aura:if isTrue="{!not(empty(v.recordError))}">
-        <div class="recordError">
-            <ui:message title="Error" severity="error" closable="true">
-                    {!v.recordError}
-            </ui:message>
-        </div>
-    </aura:if>
+
 </aura:component>
