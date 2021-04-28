@@ -5,9 +5,9 @@
 global  class RC_GoogleAuthentic implements Auth.RegistrationHandler{
     global User createUser(Id portalId, Auth.UserData data){
 
-        if(data.attributeMap.containsKey('sfdc_networkid')) {
+        if(data.attributeMap.containsKey(Label.Map_attribute_sfdc_networkid)) {
 
-            Account a = [SELECT Id FROM account WHERE name='Community Loger'];
+            Account a = [SELECT Id FROM account WHERE name= :Label.Community_Loger_Label];
             Contact c = new Contact();
             c.accountId = a.Id;
             c.email = data.email;
@@ -15,8 +15,8 @@ global  class RC_GoogleAuthentic implements Auth.RegistrationHandler{
             c.lastName = data.lastName;
             insert(c);
             User u = new User();
-            Profile p = [SELECT Id FROM profile WHERE name='Red Carpet Customer'];
-            u.username = data.lastName + data.firstName + '@RedCarpet.com';
+            Profile p = [SELECT Id FROM profile WHERE name=:Label.Red_Carpet_Customer_Profile_Label];
+            u.username = data.lastName + data.firstName + Label.RedCarpet_Profile_Suffix;
             u.email = data.email;
             u.lastName = data.lastName;
             u.firstName = data.firstName;
@@ -27,15 +27,15 @@ global  class RC_GoogleAuthentic implements Auth.RegistrationHandler{
             u.alias = alias;
             u.languagelocalekey = UserInfo.getLanguage();
             u.localesidkey = UserInfo.getLocale();
-            u.emailEncodingKey = 'UTF-8';
-            u.timeZoneSidKey = 'Europe/Berlin';
+            u.emailEncodingKey = Label.UTF_8_Label;
+            u.timeZoneSidKey = Label.Europe_Berlin_Time_Zone_Label;
             u.profileId = p.Id;
             u.contactId = c.Id;
             return u;
         } else {
             User u = new User();
-            Profile p = [SELECT Id FROM profile WHERE name='Standard User'];
-            u.username = data.username + '@RedCarpet.com';
+            Profile p = [SELECT Id FROM profile WHERE name =:  Label.Standard_User];
+            u.username = data.username + Label.RedCarpet_Profile_Suffix;
             u.email = data.email;
             u.lastName = data.lastName;
             u.firstName = data.firstName;
@@ -47,8 +47,8 @@ global  class RC_GoogleAuthentic implements Auth.RegistrationHandler{
             u.alias = alias;
             u.languagelocalekey = UserInfo.getLocale();
             u.localesidkey = UserInfo.getLocale();
-            u.emailEncodingKey = 'UTF-8';
-            u.timeZoneSidKey = 'Europe/Berlin';
+            u.emailEncodingKey = Label.UTF_8_Label;
+            u.timeZoneSidKey = Label.Europe_Berlin_Time_Zone_Label ;
             u.profileId = p.Id;
             return u;
         }
