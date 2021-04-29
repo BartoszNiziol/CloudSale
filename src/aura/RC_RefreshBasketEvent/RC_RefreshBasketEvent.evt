@@ -1,0 +1,6 @@
+<!--
+ - Created by BRITENET on 29.04.2021.
+ -->
+
+<aura:event type="COMPONENT" description="RC_RefreshBasketEvent">
+</aura:event>

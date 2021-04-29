@@ -79,6 +79,22 @@ public with sharing class RC_CustomSearchController {
         return results;
     }
 
+    @AuraEnabled
+    public static void deleteProductFromBasket(String productId){
+        System.debug('in meyhod');
+        User user = [SELECT ContactId,Id FROM User WHERE Id = :UserInfo.getUserId()];
+        Order userOrders = [SELECT  Id FROM Order  WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
+        System.debug(userOrders);
+        System.debug(productId);
+        List<OrderItem> orderItems = [SELECT Id FROM OrderItem WHERE Product2.Id =:productId AND OrderId =:userOrders.Id];
+
+        delete  orderItems[0];
+
+
+        //znajde liste order itemów gdzie user
+
+    }
+
 
 
 }

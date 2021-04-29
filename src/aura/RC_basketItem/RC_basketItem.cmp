@@ -2,12 +2,14 @@
  - Created by BRITENET on 28.04.2021.
  -->
 
-<aura:component  implements="force:hasRecordId" access="global">
+<aura:component  implements="force:hasRecordId" access="global" controller="RC_CustomSearchController">
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="ProductId" type="String"/>
     <aura:attribute name="recordError" type="String"/>
     <aura:attribute name="itemId" type="String"/>
+    <aura:registerEvent name="RC_RefreshBasketEvent" type="c:RC_RefreshBasketEvent"/>
 
     <force:recordData aura:id="recordLoader"
                       recordId="{!v.recordId}"
@@ -29,7 +31,11 @@
             <p class="slds-avatar_profile-image-medium"></p>
             <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom"
                 style="margin-top:10%">Price: {!v.simpleRecord.Price__c}</h1>
+            <div>
+                <lightning:button onclick="{!c.deleteItemFromBasket}">Remove form basket </lightning:button>
+            </div>
         </div>
+
     </div>
 
 </aura:component>
