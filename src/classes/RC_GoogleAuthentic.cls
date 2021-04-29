@@ -7,7 +7,7 @@ global  class RC_GoogleAuthentic implements Auth.RegistrationHandler{
 
         if(data.attributeMap.containsKey(Label.Map_attribute_sfdc_networkid)) {
 
-            Account a = [SELECT Id FROM account WHERE name= :Label.Community_Loger_Label];
+            Account a = [SELECT Id FROM account WHERE id= '0010900000HXrUyAAL'];
             Contact c = new Contact();
             c.accountId = a.Id;
             c.email = data.email;
@@ -15,7 +15,8 @@ global  class RC_GoogleAuthentic implements Auth.RegistrationHandler{
             c.lastName = data.lastName;
             insert(c);
             User u = new User();
-            Profile p = [SELECT Id FROM profile WHERE name=:Label.Red_Carpet_Customer_Profile_Label];
+//            Profile p = [SELECT Id FROM profile WHERE name=:Label.Red_Carpet_Customer_Profile_Label];
+            Profile p = [SELECT Id FROM profile WHERE id= '00e09000001Ekg2AAC'];
             u.username = data.lastName + data.firstName + Label.RedCarpet_Profile_Suffix;
             u.email = data.email;
             u.lastName = data.lastName;

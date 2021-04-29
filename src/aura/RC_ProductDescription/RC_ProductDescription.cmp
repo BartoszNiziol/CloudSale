@@ -2,10 +2,16 @@
  - Created by BRITENET on 28.04.2021.
  -->
 
-<aura:component description="RC_ProductDescription" implements="force:hasRecordId, forceCommunity:availableForAllPageTypes"  access="global">
+<aura:component description="RC_ProductDescription" implements="force:hasRecordId, forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController"  access="global">
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="basketIds" type="List"/>
+    <aura:attribute name="contactId" type="String" default="0030900000CdnRRAAZ"/>
+    <aura:attribute name="addedToBasket" type="Boolean"/>
+    <aura:registerEvent name="RC_AddToBasketEvent" type="c:RC_AddToBasketEvent" />
+
     <force:recordData aura:id="recordLoader"
                       recordId="{!v.recordId}"
                       layoutType="FULL"
@@ -19,6 +25,9 @@
         </div>
         <div class="slds-col slds-size_1-of-1" style="color:rgb(191,208,98); font-size:30px; font-weight: bolder; margin-top:26%">
         Price: {!v.simpleRecord.Price__c} €
+        </div>
+        <div>
+        <lightning:button onclick="{!c.handleClick}">Add to Basket </lightning:button>
         </div>
     </div>
 </aura:component>

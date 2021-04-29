@@ -1,0 +1,7 @@
+<!--
+ - Created by BRITENET on 28.04.2021.
+ -->
+
+<aura:event type="APPLICATION" description="RC_AddToBasketEvent">
+    <aura:attribute type="String" name="selectedId"/>
+</aura:event>
