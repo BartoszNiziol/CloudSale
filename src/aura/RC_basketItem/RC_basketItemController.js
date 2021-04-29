@@ -11,7 +11,7 @@
 
             deleteAction.setCallback(this, function(response) {
                                  let state = response.getState();
-                                 console.log(state);
+                                 console.log(state + 'aaaaaaaaaaaa');
 
                                  });
 
@@ -19,8 +19,9 @@
                                  $A.enqueueAction(deleteAction);
 
 
-                                         var compEvents = cmp.getEvent("RC_RefreshBasketEvent");
+                                         var compEvents = component.getEvent("RC_RefreshBasketEvent");
                                          compEvents.fire();
+                                            console.log('fire');
 
 
 
