@@ -16,7 +16,7 @@
                       targetFields="{!v.simpleRecord}"
                       targetError="{!v.recordError}"/>
 
-        {!v.simpleRecord.Name}
+
 
     <div class="slds-grid" role="banner" style="border: 2px solid rgb(191,208,98); margin:5px;">
         <div class="slds-col slds-size_2-of-12">

@@ -73,7 +73,7 @@ public with sharing class RC_CustomSearchController {
         ]) {
             results = new List<String>();
             for (OrderItem oi : ord.orderItems) {
-                results.add(oi.Id);
+                results.add(oi.PricebookEntry.Product2.Id);
             }
         }
         return results;
