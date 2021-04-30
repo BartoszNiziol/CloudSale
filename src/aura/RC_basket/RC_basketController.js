@@ -8,7 +8,7 @@
                         let state = response.getState();
                         let foundIds = [];
                          if (state == "SUCCESS"){
-                                             component.set('v.itemsId',response.getReturnValue());
+                                             component.set('v.wraps',response.getReturnValue());
                                              }
                                              });
                                              $A.enqueueAction(action);

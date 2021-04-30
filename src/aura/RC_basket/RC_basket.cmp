@@ -3,7 +3,7 @@
  -->
 
 <aura:component description="RC_basket" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController">
-    <aura:attribute type="list" name="itemsId"/>
+    <aura:attribute type="list" name="wraps"/>
     <aura:attribute type="Decimal" name="totalPrice"/>
     <aura:handler name="init" value="this" action="{!c.getBasket}"/>
     <aura:handler name="RC_RefreshBasketEvent" event="c:RC_RefreshBasketEvent" action="{!c.getBasket}"/>
@@ -12,11 +12,11 @@
 
     <aura:handler event="c:RC_AddToBasketEvent" action="{!c.addToBasket}"/>
 <!--    <aura:handler name="init" value="{!this}" action="{!c.init}"/>-->
-
-    <aura:if isTrue="{!not(empty(v.itemsId))}">
-        {!v.itemsId}
-        <aura:iteration items="{!v.itemsId}" var="id">
-            <c:RC_basketItem ProductId="{!id}" recordId="{!id}"/>
+        {!v.wraps}
+    <aura:if isTrue="{!not(empty(v.wraps))}">
+        {!v.wraps}
+        <aura:iteration items="{!v.wraps}" var="wrap">
+            <c:RC_basketItem ProductId="{!wrap.productId}" recordId="{!wrap.productId}" quantity="{!wrap.quantity}"/>
         </aura:iteration>
         <aura:set attribute="else">
             Empty

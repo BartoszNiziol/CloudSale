@@ -22,58 +22,69 @@ public with sharing class RC_CustomSearchController {
     public static void addToBasket (String customerId , String itemId){
         System.debug('start');
         User user = [SELECT ContactId,FirstName,LastName FROM User WHERE Id = :UserInfo.getUserId()];
-        OrderItem newOrderItem = new OrderItem();
-        Order basket;
-        try{
-             basket = [SELECT Id FROM order WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
-        }catch (Exception e){
-            System.debug('cach');
-            Account account = [SELECT Id FROM account WHERE Id = '0010900000HXrUyAAL'];
+        List<OrderItem> orderItems;
+        Order userOrders = [SELECT  Id FROM Order  WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
 
-            Order order = new Order();
-            order.status = 'Basket';
-            order.Name = user.FirstName +user.LastName;
-            order.AccountId =account.Id;
-            order.Contact__c = user.ContactId;
-            order.EffectiveDate = System.Date.today();
-            order.Pricebook2Id ='01s0900000BzG7tAAF';
-
-            insert(order);
-           basket = order;
-
+        if(userOrders != null) {
+             orderItems = [SELECT Id,Quantity FROM OrderItem WHERE Product2.Id = :itemId AND OrderId = :userOrders.Id];
+        }else {
+             orderItems = new List<OrderItem>();
         }
-        List<PricebookEntry> pricebookEntries2 = [SELECT Id,Name FROM PricebookEntry ];
-        System.debug(pricebookEntries2);
+        if(orderItems.size() == 0) {
 
+            OrderItem newOrderItem = new OrderItem();
+            Order basket;
+            try {
+                basket = [SELECT Id FROM order WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
+            } catch (Exception e) {
+                System.debug('cach');
+                Account account = [SELECT Id FROM account WHERE Id = '0010900000HXrUyAAL'];
 
-        newOrderItem.OrderId = basket.Id;
-        newOrderItem.Product2Id = itemId;
-        newOrderItem.Quantity = 1;
+                Order order = new Order();
+                order.status = 'Basket';
+                order.Name = user.FirstName + user.LastName;
+                order.AccountId = account.Id;
+                order.Contact__c = user.ContactId;
+                order.EffectiveDate = System.Date.today();
+                order.Pricebook2Id = '01s0900000BzG7tAAF';
 
-        Product2 product = [SELECT Price__c FROM Product2 WHERE Id = :itemId];
-        newOrderItem.UnitPrice = product.Price__c;
-        List<PricebookEntry> pricebookEntries = [SELECT Id FROM PricebookEntry WHERE Product2Id = :itemId];
+                insert(order);
+                basket = order;
 
-        Id pricebookEntry = pricebookEntries[0].Id;
-        newOrderItem.PricebookEntryId = pricebookEntry;
-
-        insert newOrderItem;
+            }
+            List<PricebookEntry> pricebookEntries2 = [SELECT Id,Name FROM PricebookEntry];
+            newOrderItem.OrderId = basket.Id;
+            newOrderItem.Product2Id = itemId;
+            newOrderItem.Quantity = 1;
+            Product2 product = [SELECT Price__c FROM Product2 WHERE Id = :itemId];
+            newOrderItem.UnitPrice = product.Price__c;
+            List<PricebookEntry> pricebookEntries = [SELECT Id FROM PricebookEntry WHERE Product2Id = :itemId];
+            Id pricebookEntry = pricebookEntries[0].Id;
+            newOrderItem.PricebookEntryId = pricebookEntry;
+            insert newOrderItem;
+        }else{
+            System.debug('jestem tu ?');
+           OrderItem item = orderItems.get(0);
+            item.Quantity ++;
+            update item;
+        }
 
     }
 
     @AuraEnabled
-    public static List<String> getBasketProductsIds(){
+    public static List<RC_BasketWrapper> getBasketProductsIds(){
         User user = [SELECT ContactId FROM User WHERE Id = :UserInfo.getUserId()];
-        List<String> results = new List<String>();
+        List<RC_BasketWrapper> results = new List<RC_BasketWrapper>();
 
         for (order ord : [
-                SELECT Id, ( SELECT PricebookEntry.Product2.id FROM OrderItems)
+                SELECT Id, ( SELECT PricebookEntry.Product2.id,Quantity FROM OrderItems)
                 from order
                 WHERE Contact__c = :user.ContactId AND Status = 'Basket'
         ]) {
-            results = new List<String>();
+            results = new List<RC_BasketWrapper>();
             for (OrderItem oi : ord.orderItems) {
-                results.add(oi.PricebookEntry.Product2.Id);
+                RC_BasketWrapper wrap = new RC_BasketWrapper(String.valueOf(oi.PricebookEntry.Product2.Id),oi.Quantity );
+                results.add(wrap);
             }
         }
         return results;
