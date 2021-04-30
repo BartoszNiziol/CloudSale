@@ -5,46 +5,34 @@
 public with sharing class RC_CustomSearchController {
     @AuraEnabled
     public static List<String> searchForIds(String searchText) {
-        System.debug(searchText);
         String likeSearchText = '%'+searchText+'%';
         List<Product2> results = [SELECT Id,Name FROM Product2 WHERE Name LIKE :likeSearchText AND Family =: Label.Red_Carpet_Item_Family_Label];
-
         List<String> ProductsIds = new List<String>();
         for (Product2 p : results){
             ProductsIds.add(p.Id);
         }
-
-        System.debug(ProductsIds);
         return  ProductsIds;
     }
 
     @AuraEnabled
     public static void addToBasket (String customerId , String itemId){
-        System.debug('start');
         User user = [SELECT ContactId,FirstName,LastName FROM User WHERE Id = :UserInfo.getUserId()];
         List<OrderItem> orderItems;
         List<Order> userOrders = [SELECT  Id,Name,Pricebook2Id FROM Order  WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
-
         if(!userOrders.isEmpty()) {
              orderItems = [SELECT Id,Quantity FROM OrderItem WHERE Product2.Id = :itemId AND OrderId = :userOrders.get(0).Id];
         }else {
              orderItems = new List<OrderItem>();
         }
         if(orderItems.size() == 0) {
-
             OrderItem newOrderItem = new OrderItem();
             Order basket;
             try {
                 basket = [SELECT Id FROM order WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
                 basket.Pricebook2Id = '01s0900000BzG7tAAF';
                 update basket;
-
-
-
             } catch (Exception e) {
-                System.debug('cach');
                 Account account = [SELECT Id FROM account WHERE Id = '0010900000HXrUyAAL'];
-
                 Order order = new Order();
                 order.Name = user.FirstName + user.LastName;
                 order.AccountId = account.Id;
@@ -53,12 +41,8 @@ public with sharing class RC_CustomSearchController {
                 order.Contact__c = user.ContactId;
                 order.EffectiveDate = System.Date.today();
                 insert order;
-
                 basket = order;
-
             }
-
-
             List<PricebookEntry> pricebookEntries2 = [SELECT Id,Name FROM PricebookEntry];
             newOrderItem.OrderId = basket.Id;
             newOrderItem.Product2Id = itemId;
@@ -70,19 +54,16 @@ public with sharing class RC_CustomSearchController {
             newOrderItem.PricebookEntryId = pricebookEntry;
             insert newOrderItem;
         }else{
-            System.debug('jestem tu ?');
            OrderItem item = orderItems.get(0);
             item.Quantity ++;
             update item;
         }
-
     }
 
     @AuraEnabled
     public static List<RC_BasketWrapper> getBasketProductsIds(){
         User user = [SELECT ContactId FROM User WHERE Id = :UserInfo.getUserId()];
         List<RC_BasketWrapper> results = new List<RC_BasketWrapper>();
-
         for (order ord : [
                 SELECT Id,TotalAmount, ( SELECT PricebookEntry.Product2.id,Quantity FROM OrderItems)
                 from order
@@ -93,7 +74,6 @@ public with sharing class RC_CustomSearchController {
                 RC_BasketWrapper wrap = new RC_BasketWrapper(String.valueOf(oi.PricebookEntry.Product2.Id),oi.Quantity, ord.TotalAmount );
                 results.add(wrap);
             }
-
         }
         return results;
     }
@@ -103,14 +83,6 @@ public with sharing class RC_CustomSearchController {
         User user = [SELECT ContactId,Id FROM User WHERE Id = :UserInfo.getUserId()];
         Order userOrders = [SELECT  Id FROM Order  WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
         List<OrderItem> orderItems = [SELECT Id FROM OrderItem WHERE Product2.Id =:productId AND OrderId =:userOrders.Id];
-
         delete  orderItems[0];
-
-
-        //znajde liste order itemów gdzie user
-
     }
-
-
-
 }

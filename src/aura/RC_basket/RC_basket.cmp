@@ -7,11 +7,7 @@
     <aura:attribute type="Decimal" name="totalPrice"/>
     <aura:handler name="init" value="this" action="{!c.getBasket}"/>
     <aura:handler name="RC_RefreshBasketEvent" event="c:RC_RefreshBasketEvent" action="{!c.getBasket}"/>
-
-
-
     <aura:handler event="c:RC_AddToBasketEvent" action="{!c.addToBasket}"/>
-<!--    <aura:handler name="init" value="{!this}" action="{!c.init}"/>-->
         {!v.wraps}
     <aura:if isTrue="{!not(empty(v.wraps))}">
         {!v.wraps}

@@ -11,14 +11,12 @@
     <aura:attribute name="itemId" type="String"/>
     <aura:attribute name="quantity" type="Decimal"/>
     <aura:registerEvent name="RC_RefreshBasketEvent" type="c:RC_RefreshBasketEvent"/>
-
     <force:recordData aura:id="recordLoader"
                       recordId="{!v.recordId}"
                       layoutType="FULL"
                       targetRecord="{!v.record}"
                       targetFields="{!v.simpleRecord}"
                       targetError="{!v.recordError}"/>
-
 
 
     <div class="slds-grid" role="banner" style="border: 2px solid rgb(191,208,98); margin:5px;">
