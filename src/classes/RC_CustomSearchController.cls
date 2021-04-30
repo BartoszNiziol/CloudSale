@@ -23,10 +23,10 @@ public with sharing class RC_CustomSearchController {
         System.debug('start');
         User user = [SELECT ContactId,FirstName,LastName FROM User WHERE Id = :UserInfo.getUserId()];
         List<OrderItem> orderItems;
-        Order userOrders = [SELECT  Id FROM Order  WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
+        List<Order> userOrders = [SELECT  Id,Name,Pricebook2Id FROM Order  WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
 
-        if(userOrders != null) {
-             orderItems = [SELECT Id,Quantity FROM OrderItem WHERE Product2.Id = :itemId AND OrderId = :userOrders.Id];
+        if(!userOrders.isEmpty()) {
+             orderItems = [SELECT Id,Quantity FROM OrderItem WHERE Product2.Id = :itemId AND OrderId = :userOrders.get(0).Id];
         }else {
              orderItems = new List<OrderItem>();
         }
@@ -36,22 +36,29 @@ public with sharing class RC_CustomSearchController {
             Order basket;
             try {
                 basket = [SELECT Id FROM order WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
+                basket.Pricebook2Id = '01s0900000BzG7tAAF';
+                update basket;
+
+
+
             } catch (Exception e) {
                 System.debug('cach');
                 Account account = [SELECT Id FROM account WHERE Id = '0010900000HXrUyAAL'];
 
                 Order order = new Order();
-                order.status = 'Basket';
                 order.Name = user.FirstName + user.LastName;
                 order.AccountId = account.Id;
+                order.Pricebook2Id = '01s0900000BzG7tAAF';
+                order.status = 'Basket';
                 order.Contact__c = user.ContactId;
                 order.EffectiveDate = System.Date.today();
-                order.Pricebook2Id = '01s0900000BzG7tAAF';
+                insert order;
 
-                insert(order);
                 basket = order;
 
             }
+
+
             List<PricebookEntry> pricebookEntries2 = [SELECT Id,Name FROM PricebookEntry];
             newOrderItem.OrderId = basket.Id;
             newOrderItem.Product2Id = itemId;
@@ -77,15 +84,16 @@ public with sharing class RC_CustomSearchController {
         List<RC_BasketWrapper> results = new List<RC_BasketWrapper>();
 
         for (order ord : [
-                SELECT Id, ( SELECT PricebookEntry.Product2.id,Quantity FROM OrderItems)
+                SELECT Id,TotalAmount, ( SELECT PricebookEntry.Product2.id,Quantity FROM OrderItems)
                 from order
                 WHERE Contact__c = :user.ContactId AND Status = 'Basket'
         ]) {
             results = new List<RC_BasketWrapper>();
             for (OrderItem oi : ord.orderItems) {
-                RC_BasketWrapper wrap = new RC_BasketWrapper(String.valueOf(oi.PricebookEntry.Product2.Id),oi.Quantity );
+                RC_BasketWrapper wrap = new RC_BasketWrapper(String.valueOf(oi.PricebookEntry.Product2.Id),oi.Quantity, ord.TotalAmount );
                 results.add(wrap);
             }
+
         }
         return results;
     }
