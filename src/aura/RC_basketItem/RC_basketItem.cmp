@@ -30,7 +30,9 @@
             </p>
             <p class="slds-avatar_profile-image-medium"></p>
             <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom"
-                style="margin-top:10%">Price: {!v.simpleRecord.Price__c}</h1>
+                style="margin-top:3%">Quantity: {!v.simpleRecord.Quantity}</h1>
+            <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom"
+                style="margin-top:3%">Price: {!v.simpleRecord.Price__c}</h1>
             <div>
                 <lightning:button onclick="{!c.deleteItemFromBasket}">Remove form basket </lightning:button>
             </div>
