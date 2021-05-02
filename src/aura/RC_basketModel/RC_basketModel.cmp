@@ -1,0 +1,23 @@
+<!--
+ - Created by BRITENET on 02.05.2021.
+ -->
+
+<aura:component description="RC_basketModel" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController">
+
+    <div onmouseenter=""></div>
+
+    <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">
+        <div class="slds-modal__container">
+            <div class="slds-modal__content slds-p-around--medium">
+                <div>
+                    <c:RC_basket />
+                </div>
+            </div>
+            <div class="slds-modal__footer">
+            </div>
+        </div>
+    </div>
+
+
+
+    </aura:component>
