@@ -5,6 +5,7 @@
 <aura:component description="RC_basket" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController">
     <aura:attribute type="list" name="wraps"/>
     <aura:attribute type="Decimal" name="totalPrice"/>
+    <aura:attribute type="Boolean" name="isPreview" default="false"/>
     <aura:handler name="init" value="this" action="{!c.getBasket}"/>
     <aura:handler name="RC_RefreshBasketEvent" event="c:RC_RefreshBasketEvent" action="{!c.getBasket}"/>
     <aura:handler event="c:RC_AddToBasketEvent" action="{!c.addToBasket}"/>
@@ -12,11 +13,16 @@
     <aura:if isTrue="{!not(empty(v.wraps))}">
         {!v.wraps}
         <aura:iteration items="{!v.wraps}" var="wrap">
-            <c:RC_basketItem ProductId="{!wrap.productId}" recordId="{!wrap.productId}" quantity="{!wrap.quantity}"/>
+            <c:RC_basketItem ProductId="{!wrap.productId}" recordId="{!wrap.productId}" quantity="{!wrap.quantity}" isPreview="{!v.isPreview}"/>
         </aura:iteration>
             <div style="text-align:right; font-size:20px; font-weight:bold;">
            Total Price:  {!v.wraps[0].totalAmount}
             </div>
+            <aura:if isTrue="{!not(v.isPreview)}">
+            <div>
+                <lightning:button onclick="{!c.submitOrderBasket}">Submit Order</lightning:button>
+            </div>
+            </aura:if>
         <aura:set attribute="else">
             Empty
         </aura:set>

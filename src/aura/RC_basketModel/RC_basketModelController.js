@@ -27,7 +27,6 @@
              },
 
              handleHover: function(component,event,helper){
-                 getBasket(component,event,helper);
                  openmodal(component,event,helper);
 
              }

@@ -4,20 +4,21 @@
 
 <aura:component description="RC_basketModel" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController">
 
-    <div onmouseenter=""></div>
+    <div onmouseenter="{!c.openmodal}" onmouseleave="{!c.closeModal}">
+        Klinkij Tutaj
+
+    </div>
 
     <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">
         <div class="slds-modal__container">
             <div class="slds-modal__content slds-p-around--medium">
                 <div>
-                    <c:RC_basket />
+                    <c:RC_basket isPreview="true" />
                 </div>
             </div>
             <div class="slds-modal__footer">
             </div>
         </div>
     </div>
-
-
 
     </aura:component>

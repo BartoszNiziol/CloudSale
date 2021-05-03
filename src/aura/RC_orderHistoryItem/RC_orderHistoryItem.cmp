@@ -1,0 +1,14 @@
+<!--
+ - Created by BRITENET on 03.05.2021.
+ -->
+
+<aura:component description="RC_orderHistoryItem" implements="force:hasRecordId" access="global">
+   <aura:attribute type="String" name="orderId"/>
+   <aura:attribute type="String" name="orderName"/>
+
+    <div>
+        <a href="{! $Site.siteUrlPrefix + '/order/' + v.orderId}">{!v.orderName}</a>
+    </div>
+
+
+</aura:component>

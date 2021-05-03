@@ -10,6 +10,7 @@
     <aura:attribute name="recordError" type="String"/>
     <aura:attribute name="itemId" type="String"/>
     <aura:attribute name="quantity" type="Decimal"/>
+    <aura:attribute name="isPreview" type="Boolean" default="false"/>
     <aura:registerEvent name="RC_RefreshBasketEvent" type="c:RC_RefreshBasketEvent"/>
     <force:recordData aura:id="recordLoader"
                       recordId="{!v.recordId}"
@@ -32,9 +33,11 @@
                 style="margin-top:3%">Quantity: {!v.quantity}</h1>
             <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom"
                 style="margin-top:3%">Price: {!v.simpleRecord.Price__c}</h1>
+            <aura:if isTrue="{!not(v.isPreview)}">
             <div>
                 <lightning:button onclick="{!c.deleteItemFromBasket}">Remove form basket </lightning:button>
             </div>
+            </aura:if>
         </div>
 
     </div>
