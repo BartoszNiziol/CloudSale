@@ -21,6 +21,7 @@
                          "url": "/basket"
                        });
                        urlEvent.fire();
+                        component.set("v.isOpened", false);
                },
 
              openmodal : function(component, event, helper) {

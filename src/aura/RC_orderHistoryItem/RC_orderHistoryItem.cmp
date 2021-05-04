@@ -6,7 +6,7 @@
    <aura:attribute type="String" name="orderId"/>
    <aura:attribute type="String" name="orderName"/>
 
-    <div>
+    <div style="font-size:25px; font-weight:bold; border-bottom: 1px solid black; margin-bottom: 3px;">
         <a href="{! $Site.siteUrlPrefix + '/order/' + v.orderId}">{!v.orderName}</a>
     </div>
 
