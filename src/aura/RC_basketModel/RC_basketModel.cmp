@@ -3,10 +3,11 @@
  -->
 
 <aura:component description="RC_basketModel" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController">
-    <aura:attribute type="Boolean" name="isOpened"/>
+    <aura:attribute type="Boolean" name="isOpened" default="false"/>
     <aura:handler event="c:RC_ModalClosedEvent" action="{!c.setModalFlag}"/>
+    <aura:registerEvent type="c:RC_OvermouseCloseEvent" name="modalCloseEvent"/>
 
-    <div  onclick="{!c.onClicked}" onmouseover="{!c.openmodal}" style="height:auto; width:auto; border:0px solid black; margin 5px;" class="basket mypopover" >
+    <div  onclick="{!c.onClicked}" onmouseover="{!c.openmodal}" onmouseleave="{!c.closeBasketModal}" style="height:auto; width:auto; border:0px solid black; margin 5px;" class="basket mypopover" >
         <lightning:overlayLibrary aura:id="overlayLib"/>
         <img src="https://i.pinimg.com/originals/cb/c5/24/cbc52492c8a9b9e707e0bb67b6363dda.jpg" style="height:65px; width=auto;"/>
     </div>

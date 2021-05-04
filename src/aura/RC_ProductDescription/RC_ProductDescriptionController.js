@@ -19,6 +19,7 @@
                      }
                      });
                      $A.enqueueAction(action);
+                     alert("Product added to Your basket");
     }
 
 })

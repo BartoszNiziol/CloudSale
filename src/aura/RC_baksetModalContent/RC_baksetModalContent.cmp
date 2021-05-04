@@ -4,7 +4,8 @@
 
 <aura:component description="RC_baksetModalContent">
     <aura:registerEvent type="c:RC_ModalClosedEvent" name="modalCloseEvent"/>
+    <aura:handler event="c:RC_OvermouseCloseEvent" action="{!c.closeModal}"/>
     <lightning:overlayLibrary aura:id="overlayLib"/>
     <c:RC_basket isPreview="true" />
-    <lightning:button onclick="{!c.closeModal}" label="Close"/>
+
 </aura:component>

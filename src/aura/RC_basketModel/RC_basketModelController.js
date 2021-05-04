@@ -15,15 +15,6 @@
                                              console.log('finito');
          },
 
-
-
-//             openmodal: function(component,event,helper) {
-//                  console.log('open');
-//                 var cmpTarget = component.find('Modalbox');
-//                 $A.util.addClass(cmpTarget, 'slds-fade-in-open');
-//
-//             },
-
               onClicked : function(component, event, helper) {
                     var urlEvent  = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
@@ -32,28 +23,9 @@
                        urlEvent.fire();
                },
 
-//               openmodal: function(component, evt, helper) {
-//                   console.log('in open modal');
-//                       var modalBody;
-//                       $A.createComponent("c:RC_baksetModalContent", {},
-//                          function(content, status) {
-//                              if (status === "SUCCESS") {
-//                                  modalBody = content;
-//                                  component.find('overlayLib').showCustomModal({
-//                                      header: "Basket",
-//                                      body: modalBody,
-//                                      showCloseButton: false,
-//                                      cssClass: "mymodal",
-//                                      closeCallback: function() {
-//
-//                                      }
-//                                  })
-//                              }
-//                          });
-//                   }
-
              openmodal : function(component, event, helper) {
                    var modalBody;
+                   console.log("isOpened:" +component.get("v.isOpened"));
                    if(!component.get("v.isOpened")){
                   $A.createComponent("c:RC_baksetModalContent", {},
                          function(content, status) {
@@ -73,7 +45,12 @@
 
                 setModalFlag : function(component, event, helper) {
                      component.set("v.isOpened",false);
-                     }
+                     },
+
+                       closeBasketModal:function(component,event,helper){
+                           var ev = $A.get("e.c:RC_OvermouseCloseEvent");
+                                             ev.fire();
 
 
+                                      }
 })
