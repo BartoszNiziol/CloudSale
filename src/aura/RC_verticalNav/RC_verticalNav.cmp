@@ -13,7 +13,7 @@
                 </li>
 
             </aura:iteration>
-            <div style="margin-left:20%;">
+            <div style="margin-left:20%; align-self: center;">
             <c:RC_customSearch />
             </div>
         </ul>
