@@ -11,6 +11,7 @@
     <aura:attribute name="itemId" type="String"/>
     <aura:attribute name="quantity" type="Decimal"/>
     <aura:attribute name="isPreview" type="Boolean" default="false"/>
+    <aura:attribute name="showConfirmDialog" type="boolean" default="false"/>
     <aura:registerEvent name="RC_RefreshBasketEvent" type="c:RC_RefreshBasketEvent"/>
     <force:recordData aura:id="recordLoader"
                       recordId="{!v.recordId}"

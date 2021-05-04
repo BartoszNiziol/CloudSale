@@ -1,0 +1,14 @@
+/**
+ * Created by BRITENET on 04.05.2021.
+ */
+.THIS .slds-text-link--reset:hover{
+    font-size:20px;
+    font-weight:bolder;
+    height: 100%;
+    text-align:center;
+}
+.THIS .slds-text-link--reset{
+
+     font-size:17px;
+      font-weight:bold;
+}
