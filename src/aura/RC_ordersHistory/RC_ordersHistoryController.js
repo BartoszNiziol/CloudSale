@@ -10,12 +10,20 @@
                                   console.log(state);
                                    if (state == "SUCCESS"){
                                                        component.set('v.orders',response.getReturnValue());
+                                                       console.log(response.getReturnValue());
                                                        }
                                                        });
                                                        $A.enqueueAction(action);
 
+
                    },
 
+     handleShowActiveSectionName: function (cmp, event, helper) {
+            alert(cmp.find("accordion").get('v.activeSectionName'));
+        },
+        handleSetActiveSectionC: function (cmp) {
+            cmp.find("accordion").set('v.activeSectionName', 'C');
+        }
 
 
 

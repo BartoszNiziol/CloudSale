@@ -7,9 +7,24 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
     <aura:if isTrue="{!not(empty(v.orders))}">
-        <aura:iteration items="{!v.orders}" var="order">
-            <c:RC_orderHistoryItem orderId="{!order.Id}" orderName="{!order.Name}"/>
-        </aura:iteration>
+        <lightning:accordion aura:id="accordion">
+            <aura:iteration items="{!v.orders}" var="order">
+<!--                <lightning:button label="click" onclick="{!c.showOrder}"/>-->
+            <lightning:accordionSection name="{!order.Name}" label="{!order.Name}">
+                <aura:set attribute="body">
+                    <aura:iteration items="{!order.OrderItems}" var="orderItem">
+                     Product {!orderItem.PricebookEntry.Product2.Name} <br/>
+                        Quantity : {!orderItem.Quantity}  <br/>
+                        Per item price: {!orderItem.PricebookEntry.Product2.Price__c} <br/>
+                        --------------------------------------------------------------------------------- <br/>
+                    </aura:iteration>
+                    <div style="margin-left: 25%;">
+                        Total Price <br/>
+                    {!order.TotalAmount}
+                    </div>
+                </aura:set>
+            </lightning:accordionSection>
+            </aura:iteration>
+        </lightning:accordion>
     </aura:if>
-
 </aura:component>
