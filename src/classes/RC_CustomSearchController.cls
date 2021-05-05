@@ -15,7 +15,7 @@ public with sharing class RC_CustomSearchController {
     }
 
     @AuraEnabled
-    public static void addToBasket (String customerId , String itemId){
+    public static void addToBasket (String customerId , String itemId, Decimal amount){
         User user = [SELECT ContactId,FirstName,LastName FROM User WHERE Id = :UserInfo.getUserId()];
         List<OrderItem> orderItems;
         List<Order> userOrders = [SELECT  Id,Name,Pricebook2Id FROM Order  WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
@@ -46,7 +46,7 @@ public with sharing class RC_CustomSearchController {
             List<PricebookEntry> pricebookEntries2 = [SELECT Id,Name FROM PricebookEntry];
             newOrderItem.OrderId = basket.Id;
             newOrderItem.Product2Id = itemId;
-            newOrderItem.Quantity = 1;
+            newOrderItem.Quantity = amount;
             Product2 product = [SELECT Price__c FROM Product2 WHERE Id = :itemId];
             newOrderItem.UnitPrice = product.Price__c;
             List<PricebookEntry> pricebookEntries = [SELECT Id FROM PricebookEntry WHERE Product2Id = :itemId];
@@ -55,7 +55,7 @@ public with sharing class RC_CustomSearchController {
             insert newOrderItem;
         }else{
            OrderItem item = orderItems.get(0);
-            item.Quantity ++;
+            item.Quantity += amount;
             update item;
         }
     }

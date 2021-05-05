@@ -10,6 +10,7 @@
     <aura:attribute name="basketIds" type="List"/>
     <aura:attribute name="contactId" type="String" default="0030900000CdnRRAAZ"/>
     <aura:attribute name="addedToBasket" type="Boolean"/>
+    <aura:attribute name="amount" type="Decimal"/>
     <aura:registerEvent name="RC_AddToBasketEvent" type="c:RC_AddToBasketEvent" />
 
     <force:recordData aura:id="recordLoader"
@@ -26,9 +27,9 @@
         <div class="slds-col slds-size_1-of-1" style="color:black; font-size:30px; font-weight: bolder; margin-top:26%">
         Price: {!v.simpleRecord.Price__c} €
         </div>
-
-
-
+        <div>
+            <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup"/> <br/>
+        </div>
         <div>
         <lightning:button onclick="{!c.handleClick}">Add to Basket </lightning:button>
         </div>
