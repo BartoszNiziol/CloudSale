@@ -1,0 +1,52 @@
+<!--
+ - Created by BRITENET on 05.05.2021.
+ -->
+
+<aura:component description="RC_BodyComponent" implements="forceCommunity:availableForAllPageTypes">
+    <ltng:require
+            styles="{!join(',',
+                    $Resource.NStyle + '/css/animate.min.css',
+                    $Resource.NStyle + '/css/animate.min.css',
+                    $Resource.NStyle + '/css/jquery.mCustomScrollbar.min.css',
+                    $Resource.NStyle + '/css/jquery-ui.css',
+                    $Resource.NStyle + '/css/meanmenu.css',
+                    $Resource.NStyle + '/css/nice-select.css',
+                    $Resource.NStyle + '/css/normalize.css',
+                    $Resource.NStyle + '/css/owl.carousel.min.css',
+                    $Resource.NStyle + '/css/responsive.css',
+                    $Resource.NStyle + '/css/slick.css',
+                    $Resource.NStyle + '/css/style.css')}"
+            scripts="{!join(',',
+                    $Resource.NStyle,
+                    $Resource.NStyle + '/js/bootstrap.bundle.min.js',
+                    $Resource.NStyle + '/js/custom.js',
+                    $Resource.NStyle + '/js/jquery.mCustomScrollbar.concat.min.js',
+                    $Resource.NStyle + '/js/jquery.min.js',
+                    $Resource.NStyle + '/js/jquery.validate.js',
+                    $Resource.NStyle + '/js/jquery-3.0.0.min.js',
+                    $Resource.NStyle  + '/js/popper.min.js')}"
+            afterScriptsLoaded="{!c.onAfterScriptsLoaded}"
+    />
+    <section class="slider_section" >
+        <div class="banner_main" >
+            <div class="container-fluid" >
+                <div class="row" style="display:flex;">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mapimg">
+                        <div class="text-bg">
+                            <h1>The latest <br/> <strong class="black_bold">furniture Design</strong><br/></h1>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="text-img">
+                            <figure>> <img src="{!$Resource.NStyle+'/niture/images/bg.jpg'}"/></figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+</aura:component>

@@ -11,4 +11,5 @@
         <c:RC_customSearchResultItem recordId="{!id}"/>
     </aura:iteration>
     </aura:if>
+
 </aura:component>

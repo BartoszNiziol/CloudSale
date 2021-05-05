@@ -22,7 +22,17 @@
                  var state = response.getState();
                  console.log("Submit order state" + state);
                         if(state == "SUCCESS"){
-
+                                                var toastEvent = $A.get("e.force:showToast");
+                                               toastEvent.setParams({
+                                                   "title": "Success!",
+                                                   "message": "Your order has been submitted."
+                                               });
+                                               toastEvent.fire();
+                                                var urlEvent  = $A.get("e.force:navigateToURL");
+                                                                   urlEvent.setParams({
+                                                                        "url": "/"
+                                                                      });
+                                                                      urlEvent.fire();
                         }
              });
              $A.enqueueAction(actionSubmit);

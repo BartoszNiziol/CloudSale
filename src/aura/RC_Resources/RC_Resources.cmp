@@ -1,8 +1,8 @@
 <!--
- - Created by BRITENET on 28.04.2021.
+ - Created by BRITENET on 05.05.2021.
  -->
 
-<aura:component extends="forceCommunity:navigationMenuBase" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
+<aura:component description="RC_Resources" implements="forceCommunity:availableForAllPageTypes">
     <ltng:require
             styles="{!join(',',
                     $Resource.NStyle + '/niture/css/animate.min.css',
@@ -26,21 +26,4 @@
                     $Resource.NStyle  + '/niture/js/popper.min.js')}"
             afterScriptsLoaded="{!c.onAfterScriptsLoaded}"
     />
-
-    <div class="slds-grid slds-grid--horizontal slds-navigation-list--horizontal">
-        <ul class="slds-list_horizontal" onclick="{!c.onClick}">
-            <aura:iteration items="{!v.menuItems}" var="item">
-                <li class="{!item.active ? 'slds-is-active' : ''}">
-                    <a href="javascript:void(0);" data-menu-item-id="{!item.id}" class="slds-list_horizontal slds-text-link--reset" style="margin-left:40px;  height: 100%; padding-right:50px ">
-                            {!item.label}
-                    </a>
-                </li>
-
-            </aura:iteration>
-            <div style="margin-left:20%; align-self: center;">
-            <c:RC_customSearch />
-            </div>
-        </ul>
-    </div>
 </aura:component>
-

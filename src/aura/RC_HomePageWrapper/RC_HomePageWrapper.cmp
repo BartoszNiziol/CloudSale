@@ -1,0 +1,16 @@
+<!--
+ - Created by BRITENET on 05.05.2021.
+ -->
+
+<aura:component description="RC_HomePageWrapper" implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute type="Boolean" name="isSearch" default="false"/>
+    <aura:handler event="c:RC_SearchEvent" action="{!c.handleSearch}"/>
+    <aura:handler event="c:RC_UNSearchEvent" action="{!c.handleUnSearch}"/>
+
+    <aura:if isTrue="{!v.isSearch}">
+            <c:RC_customSearchResultsList />
+        <aura:set attribute="else">
+            <c:RC_BodyComponent/>
+        </aura:set>
+    </aura:if>
+</aura:component>

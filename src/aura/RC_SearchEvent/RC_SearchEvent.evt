@@ -1,0 +1,6 @@
+<!--
+ - Created by BRITENET on 05.05.2021.
+ -->
+
+<aura:event type="APPLICATION" description="RC_SearchEvent">
+</aura:event>

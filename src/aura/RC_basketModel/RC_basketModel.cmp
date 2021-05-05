@@ -9,7 +9,8 @@
 
     <div  onclick="{!c.onClicked}" onmouseover="{!c.openmodal}" onmouseleave="{!c.closeBasketModal}" style="height:auto; width:auto; border:0px solid black; margin 5px;" class="basket mypopover" >
         <lightning:overlayLibrary aura:id="overlayLib"/>
-        <img src="https://i.pinimg.com/originals/cb/c5/24/cbc52492c8a9b9e707e0bb67b6363dda.jpg" style="height:65px; width=auto;"/>
+        <img src="{!$Resource.NStyle+'/niture/icon/3.png'}"/>
+
     </div>
 
 <!--    <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">-->

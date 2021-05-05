@@ -35,6 +35,7 @@
             <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">
             <p class="slds-text-heading_large">
                 {!v.simpleRecord.Name}
+
             </p>
             </a>
             <p class="slds-avatar_profile-image-medium"></p>

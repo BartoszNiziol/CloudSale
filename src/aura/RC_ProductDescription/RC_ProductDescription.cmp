@@ -34,4 +34,7 @@
         <lightning:button onclick="{!c.handleClick}">Add to Basket </lightning:button>
         </div>
     </div>
+
+    
+
 </aura:component>
