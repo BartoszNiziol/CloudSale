@@ -3,13 +3,66 @@
  -->
 
 <aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
-    <aura:attribute type="list" name="recordIds" />
+    <aura:attribute type="list" name="recordIds"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <ltng:require
+            styles="{!join(',',
+                    $Resource.NStyle + '/niture/css/animate.min.css',
+                    $Resource.NStyle + '/niture/css/animate.min.css',
+                    $Resource.NStyle + '/niture/css/jquery.mCustomScrollbar.min.css',
+                    $Resource.NStyle + '/niture/css/jquery-ui.css',
+                    $Resource.NStyle + '/niture/css/meanmenu.css',
+                    $Resource.NStyle + '/niture/css/nice-select.css',
+                    $Resource.NStyle + '/niture/css/normalize.css',
+                    $Resource.NStyle + '/niture/css/owl.carousel.min.css',
+                    $Resource.NStyle + '/niture/css/responsive.css',
+                    $Resource.NStyle + '/niture/css/slick.css',
+                    $Resource.NStyle + '/niture/css/style.css')}"
+            scripts="{!join(',',
+                    $Resource.NStyle + '/niture/js/bootstrap.bundle.min.js',
+                    $Resource.NStyle + '/niture/js/custom.js',
+                    $Resource.NStyle + '/niture/js/jquery.mCustomScrollbar.concat.min.js',
+                    $Resource.NStyle + '/niture/js/jquery.min.js',
+                    $Resource.NStyle + '/niture/js/jquery.validate.js',
+                    $Resource.NStyle + '/niture/js/jquery-3.0.0.min.js',
+                    $Resource.NStyle  + '/niture/js/popper.min.js')}"
+            afterScriptsLoaded="{!c.onAfterScriptsLoaded}"
+    />
 
-    <aura:if isTrue="{!not(empty(v.recordIds))}">
-    <aura:iteration items="{!v.recordIds}" var="id">
-        <c:RC_customSearchResultItem recordId="{!id}"/>
-    </aura:iteration>
-    </aura:if>
+
+
+
+    <body class="main-layout">
+    <div class="wrapper">
+        <div id="content">
+            <div class="contactus">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="title">
+                                <h2>Our Product</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ourproduct">
+                <div class="container">
+                    <div class="row product_style_3">
+                        <aura:if isTrue="{!not(empty(v.recordIds))}">
+                            <aura:iteration items="{!v.recordIds}" var="id">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                                <c:RC_customSearchResultItem recordId="{!id}"/>
+                                </div>
+                            </aura:iteration>
+                        </aura:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
 
 </aura:component>

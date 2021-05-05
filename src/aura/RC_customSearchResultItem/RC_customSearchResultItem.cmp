@@ -13,21 +13,63 @@
                       targetFields="{!v.simpleRecord}"
                       targetError="{!v.recordError}"/>
 
-    <div class="slds-grid" role="banner" style="border: 2px solid black; margin:5px; border-radius:15px;">
-        <div class="slds-col slds-size_2-of-12">
-            <a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">
-                <img src="{!v.simpleRecord.Product_Image_Link__c}" width="200" height="300"/>
-            </a>
-        </div>
-        <div class="slds-col slds-size_10-of-12" style="margin-left:5 px; ">
-            <p class="slds-text-heading_large">
-                <a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}"> {!v.simpleRecord.Name}</a>
-            </p>
-            <p class="slds-avatar_profile-image-medium"></p>
-            <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom"
-                style="margin-top:10%"><a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">Price:
-                {!v.simpleRecord.Price__c} €</a></h1>
+    <ltng:require
+            styles="{!join(',',
+                    $Resource.NStyle + '/niture/css/animate.min.css',
+                    $Resource.NStyle + '/niture/css/animate.min.css',
+                    $Resource.NStyle + '/niture/css/jquery.mCustomScrollbar.min.css',
+                    $Resource.NStyle + '/niture/css/jquery-ui.css',
+                    $Resource.NStyle + '/niture/css/meanmenu.css',
+                    $Resource.NStyle + '/niture/css/nice-select.css',
+                    $Resource.NStyle + '/niture/css/normalize.css',
+                    $Resource.NStyle + '/niture/css/owl.carousel.min.css',
+                    $Resource.NStyle + '/niture/css/responsive.css',
+                    $Resource.NStyle + '/niture/css/slick.css',
+                    $Resource.NStyle + '/niture/css/style.css')}"
+            scripts="{!join(',',
+                    $Resource.NStyle + '/niture/js/bootstrap.bundle.min.js',
+                    $Resource.NStyle + '/niture/js/custom.js',
+                    $Resource.NStyle + '/niture/js/jquery.mCustomScrollbar.concat.min.js',
+                    $Resource.NStyle + '/niture/js/jquery.min.js',
+                    $Resource.NStyle + '/niture/js/jquery.validate.js',
+                    $Resource.NStyle + '/niture/js/jquery-3.0.0.min.js',
+                    $Resource.NStyle  + '/niture/js/popper.min.js')}"
+            afterScriptsLoaded="{!c.onAfterScriptsLoaded}"
+    />
+
+    <!--    <div class="slds-grid" role="banner" style="border: 2px solid black; margin:5px; border-radius:15px;">-->
+    <!--        <div class="slds-col slds-size_2-of-12">-->
+    <!--            <a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">-->
+    <!--                <img src="{!v.simpleRecord.Product_Image_Link__c}" width="200" height="300"/>-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <!--        <div class="slds-col slds-size_10-of-12" style="margin-left:5 px; ">-->
+    <!--            <p class="slds-text-heading_large">-->
+    <!--                <a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}"> {!v.simpleRecord.Name}</a>-->
+    <!--            </p>-->
+    <!--            <p class="slds-avatar_profile-image-medium"></p>-->
+    <!--            <h1 class="slds-page-header__title slds-m-right&#45;&#45;small  slds-truncate slds-align-bottom"-->
+    <!--                style="margin-top:10%"><a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">Price:-->
+    <!--                {!v.simpleRecord.Price__c} €</a></h1>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+        <div class="full product" style="width:450px;">
+            <div class="product_img">
+                <div class="center"><img src="{!v.simpleRecord.Product_Image_Link__c}" alt="#"/>
+                    <div class="overlay_hover"><a class="add-bt"
+                                                  href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">Buy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product_detail text_align_center" >
+                <p class="product_price">{!v.simpleRecord.Price__c} €</p>
+                <p class="product_descr">{!v.simpleRecord.Name}</p>
+            </div>
         </div>
     </div>
-
 </aura:component>
+
+
+
+
