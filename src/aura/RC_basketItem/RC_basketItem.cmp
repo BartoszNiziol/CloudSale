@@ -32,7 +32,7 @@
         </div>
 <!--        </a>-->
         <div class="slds-col slds-size_10-of-12" style="margin-left:5 px; ">
-            <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">
+            <a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">
             <p class="slds-text-heading_large">
                 {!v.simpleRecord.Name}
 

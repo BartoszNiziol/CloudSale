@@ -2,7 +2,9 @@
  - Created by BRITENET on 28.04.2021.
  -->
 
-<aura:component description="RC_ProductDescription" implements="force:hasRecordId, forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController"  access="global">
+<aura:component description="RC_ProductDescription"
+                implements="force:hasRecordId, forceCommunity:availableForAllPageTypes"
+                controller="RC_CustomSearchController" access="global">
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="recordError" type="String"/>
@@ -11,30 +13,97 @@
     <aura:attribute name="contactId" type="String" default="0030900000CdnRRAAZ"/>
     <aura:attribute name="addedToBasket" type="Boolean"/>
     <aura:attribute name="amount" type="Decimal"/>
-    <aura:registerEvent name="RC_AddToBasketEvent" type="c:RC_AddToBasketEvent" />
+    <aura:registerEvent name="RC_AddToBasketEvent" type="c:RC_AddToBasketEvent"/>
+
+    <ltng:require
+            styles="{!join(',',
+                    $Resource.NStyle + '/niture/css/animate.min.css',
+                    $Resource.NStyle + '/niture/css/animate.min.css',
+                    $Resource.NStyle + '/niture/css/jquery.mCustomScrollbar.min.css',
+                    $Resource.NStyle + '/niture/css/jquery-ui.css',
+                    $Resource.NStyle + '/niture/css/meanmenu.css',
+                    $Resource.NStyle + '/niture/css/nice-select.css',
+                    $Resource.NStyle + '/niture/css/normalize.css',
+                    $Resource.NStyle + '/niture/css/owl.carousel.min.css',
+                    $Resource.NStyle + '/niture/css/responsive.css',
+                    $Resource.NStyle + '/niture/css/slick.css',
+                    $Resource.NStyle + '/niture/css/style.css')}"
+            scripts="{!join(',',
+                    $Resource.NStyle + '/niture/js/bootstrap.bundle.min.js',
+                    $Resource.NStyle + '/niture/js/custom.js',
+                    $Resource.NStyle + '/niture/js/jquery.mCustomScrollbar.concat.min.js',
+                    $Resource.NStyle + '/niture/js/jquery.min.js',
+                    $Resource.NStyle + '/niture/js/jquery.validate.js',
+                    $Resource.NStyle + '/niture/js/jquery-3.0.0.min.js',
+                    $Resource.NStyle  + '/niture/js/popper.min.js')}"
+            afterScriptsLoaded="{!c.onAfterScriptsLoaded}"
+    />
 
     <force:recordData aura:id="recordLoader"
                       recordId="{!v.recordId}"
                       layoutType="FULL"
                       targetRecord="{!v.record}"
                       targetFields="{!v.simpleRecord}"
-                      targetError="{!v.recordError}"  />
+                      targetError="{!v.recordError}"/>
 
-    <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size_1-of-1" style="color:black; font-size:30px; font-weight: bolder">
-        {!v.simpleRecord.Name}
-        </div>
-        <div class="slds-col slds-size_1-of-1" style="color:black; font-size:30px; font-weight: bolder; margin-top:26%">
-        Price: {!v.simpleRecord.Price__c} €
-        </div>
-        <div>
-            <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup"/> <br/>
-        </div>
-        <div>
-        <lightning:button onclick="{!c.handleClick}">Add to Basket </lightning:button>
+    <!--    <div class="slds-grid slds-wrap">-->
+    <!--        <div class="slds-col slds-size_1-of-1" style="color:black; font-size:30px; font-weight: bolder">-->
+    <!--        {!v.simpleRecord.Name}-->
+    <!--        </div>-->
+    <!--        <div class="slds-col slds-size_1-of-1" style="color:black; font-size:30px; font-weight: bolder; margin-top:26%">-->
+    <!--        Price: {!v.simpleRecord.Price__c} €-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--            <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup"/> <br/>-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--        <lightning:button onclick="{!c.handleClick}">Add to Basket </lightning:button>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <div class="main-layout" style="background-color:white;">
+        <div class="wrapper">
+            <div class="content">
+                <div class="layout_padding-2">
+                    <div class="container">
+                        <div class="row" style="display:flex; margin-left:20%; margin-right:20%;">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" >
+                                <div class="img_box" style="border: white;">
+                                    <figure><img src="{!v.simpleRecord.Product_Image_Link__c}" style="height: 200px; width:650px;" /></figure>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 product_detail_side">
+                                <div class="abotext_box">
+                                    <div class="product-heading">
+                                        <h2>{!v.simpleRecord.Name}</h2>
+                                    </div>
+                                    <div class="product-detail-side">
+                                        <span class="new-price">Price: {!v.simpleRecord.Price__c} €</span>
+                                    </div>
+                                    <div class="detail-contant" style="margin-bottom:inherit;">
+                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
+                                            turpis
+                                            egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit
+                                            amet, ante.
+                                            Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+                                            Mauris
+                                            placerat eleifend leo.
+                                        </p>
+                                        <div class="cart" >
+                                            <div class="quantity" style="padding-top:80px;">
+                                                <!--                            <input step="1" min="1" max="5" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" type="number">-->
+                                                <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup"  />
+                                            </div>
+                                            <button  class="bt_main" onclick="{!c.handleClick}">Add to cart
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    
-
 </aura:component>

@@ -5,7 +5,7 @@
 <aura:component description="RC_ordersHistory" implements="forceCommunity:availableForAllPageTypes" access="global" controller="RC_CustomSearchController">
    <aura:attribute type="list" name="orders" />
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-
+<div style="background-color:white;">
     <aura:if isTrue="{!not(empty(v.orders))}">
         <lightning:accordion aura:id="accordion">
             <aura:iteration items="{!v.orders}" var="order">
@@ -13,18 +13,20 @@
             <lightning:accordionSection name="{!order.Name}" label="{!order.Name}">
                 <aura:set attribute="body">
                     <aura:iteration items="{!order.OrderItems}" var="orderItem">
-                     Product {!orderItem.PricebookEntry.Product2.Name} <br/>
+                        <div style="color:black">
+                     Product: {!orderItem.PricebookEntry.Product2.Name} <br/>
                         Quantity : {!orderItem.Quantity}  <br/>
-                        Per item price: {!orderItem.PricebookEntry.Product2.Price__c} <br/>
+                        Per item price: {!orderItem.PricebookEntry.Product2.Price__c} €<br/>
                         --------------------------------------------------------------------------------- <br/>
+                        </div>
                     </aura:iteration>
-                    <div style="margin-left: 25%;">
-                        Total Price <br/>
-                    {!order.TotalAmount}
+                    <div style="margin-left: 25%; color:black;">
+                        Total Price: {!order.TotalAmount} €
                     </div>
                 </aura:set>
             </lightning:accordionSection>
             </aura:iteration>
         </lightning:accordion>
     </aura:if>
+</div>
 </aura:component>
