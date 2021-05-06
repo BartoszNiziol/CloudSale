@@ -1,0 +1,8 @@
+/**
+ * Created by BRITENET on 06.05.2021.
+ */
+.THIS.slds-spinner_container {
+  z-index: 100000;
+  position: fixed;
+  opacity: 0.4;
+}

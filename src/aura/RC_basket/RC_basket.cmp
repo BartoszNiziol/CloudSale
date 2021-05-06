@@ -9,6 +9,7 @@
     <aura:handler name="init" value="this" action="{!c.getBasket}"/>
     <aura:handler name="RC_RefreshBasketEvent" event="c:RC_RefreshBasketEvent" action="{!c.getBasket}"/>
     <aura:handler event="c:RC_AddToBasketEvent" action="{!c.addToBasket}"/>
+
     <aura:if isTrue="{!not(empty(v.wraps))}">
         <aura:iteration items="{!v.wraps}" var="wrap">
             <c:RC_basketItem ProductId="{!wrap.productId}" recordId="{!wrap.productId}" quantity="{!wrap.quantity}" isPreview="{!v.isPreview}"/>
@@ -18,13 +19,11 @@
             </div>
             <aura:if isTrue="{!not(v.isPreview)}">
             <div style="text-align: -webkit-right;" >
-
-<!--                <lightning:button onclick="{!c.submitOrderBasket}">Submit Order</lightning:button>-->
                 <button class="bt_main" onclick="{!c.submitOrderBasket}">Submit Order</button>
             </div>
             </aura:if>
         <aura:set attribute="else">
-            Empty
+            Basket is empty...
         </aura:set>
     </aura:if>
 

@@ -26,16 +26,14 @@
                     $Resource.NStyle  + '/niture/js/popper.min.js')}"
             afterScriptsLoaded="{!c.onAfterScriptsLoaded}"
     />
-
     <div class="slds-grid slds-grid--horizontal slds-navigation-list--horizontal">
         <ul class="slds-list_horizontal" onclick="{!c.onClick}">
             <aura:iteration items="{!v.menuItems}" var="item">
                 <li class="{!item.active ? 'slds-is-active' : ''}">
-                    <a href="javascript:void(0);" data-menu-item-id="{!item.id}" class="slds-list_horizontal slds-text-link--reset" style="margin-left:40px;  height: 100%; padding-right:50px; width: 250px; padding-bottom: 26px; ">
+                    <a href="javascript:void(0);" data-menu-item-id="{!item.id}" class="slds-list_horizontal slds-text-link--reset" style="margin-left:40px;  height: 100%; padding-right:50px; width: 200px; padding-bottom:26px; ">
                             {!item.label}
                     </a>
                 </li>
-
             </aura:iteration>
             <div style="margin-left:20%; align-self: center;">
             <c:RC_customSearch />
