@@ -79,11 +79,19 @@ public with sharing class RC_CustomSearchController {
     }
 
     @AuraEnabled
-    public static void deleteProductFromBasket(String productId){
+    public static void deleteProductFromBasket(String productId, Decimal amount){
         User user = [SELECT ContactId,Id FROM User WHERE Id = :UserInfo.getUserId()];
         Order userOrders = [SELECT  Id FROM Order  WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
-        List<OrderItem> orderItems = [SELECT Id FROM OrderItem WHERE Product2.Id =:productId AND OrderId =:userOrders.Id];
-        delete  orderItems[0];
+        OrderItem orderItem = [SELECT Id,Quantity FROM OrderItem WHERE Product2.Id =:productId AND OrderId =:userOrders.Id];
+
+        if(orderItem.Quantity == amount){
+            delete  orderItem;
+        }else{
+             orderItem.Quantity -= amount;
+            update orderItem;
+        }
+
+
     }
 
     @AuraEnabled
@@ -109,7 +117,6 @@ public with sharing class RC_CustomSearchController {
             contract.ContractTerm = 120;
             insert contract ;
         }
-
 
         System.debug(2);
         basket.Status = 'Done';
@@ -165,6 +172,28 @@ public with sharing class RC_CustomSearchController {
             resultOrders.add(ord);
         }
         return resultOrders;
+    }
+
+    @AuraEnabled
+    public static List<String> getImagesLinks(String productId){
+        System.debug('stars');
+
+        List<ContentDocumentLink> lks = [SELECT ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId =: productId ];
+        List<String> strids = new List<String>();
+        for(ContentDocumentLink cdl : lks){
+            strids.add(cdl.ContentDocumentId);
+        }
+
+        List<ContentDocument> dcs =  [Select Id ,Title, (SELECT Id, DistributionPublicUrl,ContentDownloadUrl,PdfDownloadUrl FROM ContentDistributions) from ContentDocument Where ID In : strids];
+        List<String> downloadLinks = new List<String>();
+        for (ContentDocument document : dcs){
+             downloadLinks.add(document.ContentDistributions.get(0).ContentDownloadUrl);
+        }
+        System.debug(downloadLinks);
+        return downloadLinks;
+
+
+
     }
 
 //    @AuraEnabled

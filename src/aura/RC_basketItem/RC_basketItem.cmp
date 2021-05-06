@@ -2,14 +2,17 @@
  - Created by BRITENET on 28.04.2021.
  -->
 
-<aura:component  implements="force:hasRecordId" access="global" controller="RC_CustomSearchController">
+<aura:component implements="force:hasRecordId" access="global" controller="RC_CustomSearchController">
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="imagesLinks" type="List"/>
     <aura:attribute name="ProductId" type="String"/>
     <aura:attribute name="recordError" type="String"/>
     <aura:attribute name="itemId" type="String"/>
+    <aura:attribute name="amount" type="Decimal" default="1"/>
     <aura:attribute name="quantity" type="Decimal"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:attribute name="isPreview" type="Boolean" default="false"/>
     <aura:attribute name="showConfirmDialog" type="boolean" default="false"/>
     <aura:registerEvent name="RC_RefreshBasketEvent" type="c:RC_RefreshBasketEvent"/>
@@ -21,22 +24,18 @@
                       targetError="{!v.recordError}"/>
 
 
-
-
-
-
-    <div class="slds-grid" role="banner" style="border: 2px solid rgb(191,208,98); margin:5px;">
-<!--        <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">-->
+    <div class="slds-grid" role="banner" style="margin:10px; background-color:white;">
+        <!--        <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">-->
         <div class="slds-col slds-size_2-of-12">
-                <img src="{!v.simpleRecord.Product_Image_Link__c}" width="200" height="300"/>
+            <img src="{!v.imagesLinks[0]}" width="200" height="300"/>
         </div>
-<!--        </a>-->
+        <!--        </a>-->
         <div class="slds-col slds-size_10-of-12" style="margin-left:5 px; ">
             <a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">
-            <p class="slds-text-heading_large">
-                {!v.simpleRecord.Name}
+                <p class="slds-text-heading_large">
+                        {!v.simpleRecord.Name}
 
-            </p>
+                </p>
             </a>
             <p class="slds-avatar_profile-image-medium"></p>
             <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom"
@@ -44,9 +43,17 @@
             <h1 class="slds-page-header__title slds-m-right--small  slds-truncate slds-align-bottom"
                 style="margin-top:3%">Price: {!v.simpleRecord.Price__c} €</h1>
             <aura:if isTrue="{!not(v.isPreview)}">
-            <div>
-                <lightning:button onclick="{!c.deleteItemFromBasket}">Remove form basket </lightning:button>
-            </div>
+
+                <div style="display:flex; align-items: flex-end;">
+                    <div style="width:40px; padding-bottom: 10px;" class="amountHolder">
+                        <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup" class="removeamount"/>
+                    </div>
+                    <div style="margin-left:10px; padding-bottom: 10px;">
+                        <lightning:overlayLibrary aura:id="amountError"/>
+                        <button class="bt_main" onclick="{!c.deleteItemFromBasket}">Remove form basket</button>
+                        <!--                    <lightning:button onclick="{!c.deleteItemFromBasket}">Remove form basket</lightning:button>-->
+                    </div>
+                </div>
             </aura:if>
         </div>
 

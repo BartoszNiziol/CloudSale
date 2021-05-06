@@ -6,6 +6,7 @@
                 implements="force:hasRecordId, forceCommunity:availableForAllPageTypes"
                 controller="RC_CustomSearchController" access="global">
     <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="imagesLinks" type="List"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="recordError" type="String"/>
     <aura:attribute name="recordId" type="String"/>
@@ -14,6 +15,7 @@
     <aura:attribute name="addedToBasket" type="Boolean"/>
     <aura:attribute name="amount" type="Decimal"/>
     <aura:registerEvent name="RC_AddToBasketEvent" type="c:RC_AddToBasketEvent"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
     <ltng:require
             styles="{!join(',',
@@ -60,15 +62,17 @@
     <!--        <lightning:button onclick="{!c.handleClick}">Add to Basket </lightning:button>-->
     <!--        </div>-->
     <!--    </div>-->
+
     <div class="main-layout" style="background-color:white;">
         <div class="wrapper">
             <div class="content">
                 <div class="layout_padding-2">
                     <div class="container">
                         <div class="row" style="display:flex; margin-left:20%; margin-right:20%;">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" >
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="img_box" style="border: white;">
-                                    <figure><img src="{!v.simpleRecord.Product_Image_Link__c}" style="height: 200px; width:650px;" /></figure>
+                                    <figure><img src="{!v.imagesLinks[0]}"
+                                                 style="height: 200px; width:650px;"/></figure>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 product_detail_side">
@@ -88,14 +92,15 @@
                                             Mauris
                                             placerat eleifend leo.
                                         </p>
-                                        <div class="cart" >
-                                            <div class="quantity" style="padding-top:80px;">
+                                        <div class="cart">
+                                            <div class="quantity" style="padding-top:80px; width:40px; padding-bottom:10px;" >
                                                 <!--                            <input step="1" min="1" max="5" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" type="number">-->
-                                                <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup"  />
+                                                <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup"/>
                                             </div>
-                                            <button  class="bt_main" onclick="{!c.handleClick}">Add to cart
-                                            </button>
-
+                                            <div style="padding-top: 10px; margin-left:10px; text-align: -webkit-center;">
+                                                <lightning:overlayLibrary aura:id="amountError"/>
+                                                <button class="bt_main" onclick="{!c.handleClick}">Add to cart</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

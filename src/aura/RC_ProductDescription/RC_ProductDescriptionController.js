@@ -7,6 +7,24 @@
         var itemId = component.get('v.recordId');
         var contactId = component.get('v.contactId');
         var amount = component.get('v.amount');
+
+        if(amount < 1 ){
+              component.find('amountError').showCustomPopover({
+                            body: "Ammount must be 1 or higher",
+                            referenceSelector: ".quantity",
+                            cssClass: "popoverclass,cPopoverOpener,slds-m-bottom_xx-large,slds-nubbin_bottom"
+                        }).then(function (overlay) {
+                            component._overlay = overlay;
+                            setTimeout(function(){
+                                //close the popover after 3 seconds
+                                if (component._overlay) {
+                                    component._overlay.close();
+                                }
+                            }, 3000);
+                        });
+
+        }else{
+        console.log('else');
          let action = component.get("c.addToBasket");
 
          action.setParams({"customerId" : contactId, "itemId" : itemId,"amount" : amount});
@@ -27,8 +45,27 @@
                      });
                      $A.enqueueAction(action);
 
+        }
+
+    },
+    init : function(component, event, helper) {
+         var itemId = component.get('v.recordId');
+          let action = component.get("c.getImagesLinks");
+                  action.setParam('productId',itemId);
+                  action.setCallback(this, function(response) {
+                              let state = response.getState();
+                              if (state == "SUCCESS"){
+                              component.set('v.imagesLinks',response.getReturnValue());
+                              }
 
 
-    }
+    });
+           $A.enqueueAction(action);
+}
+
+
+
+
+
 
 })

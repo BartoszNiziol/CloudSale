@@ -57,6 +57,9 @@
                                 <c:RC_customSearchResultItem recordId="{!id}"/>
                                 </div>
                             </aura:iteration>
+                            <aura:set attribute="else">
+                                False
+                            </aura:set>
                         </aura:if>
                     </div>
                 </div>

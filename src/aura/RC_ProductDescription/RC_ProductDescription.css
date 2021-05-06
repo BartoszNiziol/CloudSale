@@ -1,0 +1,15 @@
+/**
+ * Created by BRITENET on 06.05.2021.
+ */
+.THIS .popoverclass {
+    color:white;
+    background-color:black;
+}
+.THIS .quantity {
+     height:45px;
+        font-size:20px;
+}
+.THIS .cart button {
+
+    text-align: -webkit-center;
+}
