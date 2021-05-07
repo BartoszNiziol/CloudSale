@@ -22,7 +22,6 @@ trigger RC_GenerateLinkForAttachmentsTrigger on ContentDocumentLink (before inse
             contentDocumentLinksIds.add(links.ContentDocumentId);
         }
 
-
         List<ContentDocument> documents =  [Select Id ,Title FROM ContentDocument WHERE ID In : contentDocumentLinksIds];
         List<String> contentDocumentIds = new List<String>();
 

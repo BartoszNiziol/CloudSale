@@ -29,10 +29,6 @@
                     $Resource.NStyle  + '/niture/js/popper.min.js')}"
             afterScriptsLoaded="{!c.onAfterScriptsLoaded}"
     />
-
-
-
-
     <body class="main-layout">
     <div class="wrapper">
         <div id="content">

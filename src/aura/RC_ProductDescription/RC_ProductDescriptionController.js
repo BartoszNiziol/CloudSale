@@ -42,6 +42,7 @@
             $A.enqueueAction(action);
         }
     },
+
     init: function (component, event, helper) {
         var itemId = component.get('v.recordId');
         let action = component.get("c.getImagesLinks");

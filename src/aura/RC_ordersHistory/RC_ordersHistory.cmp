@@ -13,12 +13,7 @@
             <lightning:accordionSection name="{!order.Name}" label="{!order.Name}">
                 <aura:set attribute="body">
                     <aura:iteration items="{!order.OrderItems}" var="orderItem">
-<!--                        <div style="color:black">-->
-<!--                     Product: {!orderItem.PricebookEntry.Product2.Name} <br/>-->
-<!--                        Quantity : {!orderItem.Quantity}  <br/>-->
-<!--                        Per item price: {!orderItem.PricebookEntry.Product2.Price__c} €<br/>-->
-<!--                        -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; <br/>-->
-<!--                        </div>-->
+
                         <c:RC_orderHistoryItem price="{!orderItem.PricebookEntry.Product2.Price__c}"
                                                quantity="{!orderItem.Quantity}"
                                                productName="{!orderItem.PricebookEntry.Product2.Name}"

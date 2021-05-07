@@ -3,6 +3,7 @@
  */
 
 public with sharing class RC_CustomSearchController {
+
     @AuraEnabled
     public static List<String> searchForIds(String searchText) {
         String likeSearchText = '%'+searchText+'%';
@@ -183,7 +184,6 @@ public with sharing class RC_CustomSearchController {
         for(ContentDocumentLink cdl : lks){
             strids.add(cdl.ContentDocumentId);
         }
-
         List<ContentDocument> dcs =  [Select Id ,Title,ArchivedDate,Description, (SELECT Id, DistributionPublicUrl,ContentDownloadUrl,PdfDownloadUrl FROM ContentDistributions) from ContentDocument Where ID In : strids];
         dcs.sort();
 
@@ -200,25 +200,7 @@ public with sharing class RC_CustomSearchController {
             }
         }
 
-        System.debug(downloadLinks);
-
-
-
         return downloadLinks;
-
-
-
     }
 
-//    @AuraEnabled
-//    public static List<String> searchOrders() {
-//        List<String> orderIds = new List<String>();
-//        User user = [SELECT ContactId FROM User WHERE Id = :UserInfo.getUserId()];
-//        for (order ord : [SELECT ID FROM order  WHERE Contact__c = :user.ContactId AND Status = 'Done'
-//        ]) {
-//            orderIds.add(ord.Id);
-//        }
-//        System.debug(orderIds);
-//        return orderIds;
-//    }
 }

@@ -49,20 +49,6 @@
                       targetFields="{!v.simpleRecord}"
                       targetError="{!v.recordError}"/>
 
-    <!--    <div class="slds-grid slds-wrap">-->
-    <!--        <div class="slds-col slds-size_1-of-1" style="color:black; font-size:30px; font-weight: bolder">-->
-    <!--        {!v.simpleRecord.Name}-->
-    <!--        </div>-->
-    <!--        <div class="slds-col slds-size_1-of-1" style="color:black; font-size:30px; font-weight: bolder; margin-top:26%">-->
-    <!--        Price: {!v.simpleRecord.Price__c} €-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--            <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup"/> <br/>-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--        <lightning:button onclick="{!c.handleClick}">Add to Basket </lightning:button>-->
-    <!--        </div>-->
-    <!--    </div>-->
 
     <div class="main-layout" style="background-color:white;">
         <div class="wrapper">
@@ -82,7 +68,6 @@
                                          style="height:100px; width:33%; padding: 5px;"  onclick="{!c.photoClick}" name="2"/>
                                     <img src="{!v.imagesLinks[3]}"
                                          style="height:100px; width:33%; padding: 5px;"  onclick="{!c.photoClick}" name="3"/>
-
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 product_detail_side">
