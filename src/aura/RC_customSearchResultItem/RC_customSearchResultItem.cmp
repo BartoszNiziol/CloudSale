@@ -2,7 +2,7 @@
  - Created by BRITENET on 28.04.2021.
  -->
 
-<aura:component implements="force:hasRecordId" access="global"  controller="RC_CustomSearchController">
+<aura:component implements="force:hasRecordId" access="global"  controller="RC_ProductSearchResultItemController">
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="imagesLinks" type="List"/>

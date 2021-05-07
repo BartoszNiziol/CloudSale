@@ -4,4 +4,9 @@
 
 public with sharing class RC_OrderHistoryController {
 
+    @AuraEnabled
+    public static List<Order> searchOrders() {
+        return RC_OrderHandler.searchOrders();
+    }
+
 }

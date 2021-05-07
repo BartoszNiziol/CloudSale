@@ -2,7 +2,7 @@
  - Created by BRITENET on 03.05.2021.
  -->
 
-<aura:component description="RC_ordersHistory" implements="forceCommunity:availableForAllPageTypes" access="global" controller="RC_CustomSearchController">
+<aura:component description="RC_ordersHistory" implements="forceCommunity:availableForAllPageTypes" access="global" controller="RC_OrderHistoryController">
    <aura:attribute type="list" name="orders" />
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 <div style="background-color:white;">

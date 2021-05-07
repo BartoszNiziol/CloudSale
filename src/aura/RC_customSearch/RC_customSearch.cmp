@@ -2,7 +2,7 @@
  - Created by BRITENET on 28.04.2021.
  -->
 
-<aura:component implements="forceCommunity:searchInterface" controller="RC_CustomSearchController">
+<aura:component implements="forceCommunity:searchInterface" controller="RC_ProductController">
     <aura:attribute name="searchText" type="String" default=""/>
     <aura:registerEvent name="SearchEvent" type="c:RC_SearchEvent"/>
     <c:RC_Spinner aura:id="spinner"/>

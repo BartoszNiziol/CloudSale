@@ -2,7 +2,7 @@
  - Created by BRITENET on 28.04.2021.
  -->
 
-<aura:component description="RC_basket" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController">
+<aura:component description="RC_basket" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_BasketController">
     <aura:attribute type="list" name="wraps"/>
     <aura:attribute type="Decimal" name="totalPrice"/>
     <aura:attribute type="Boolean" name="isPreview" default="false"/>

@@ -2,7 +2,7 @@
  - Created by BRITENET on 02.05.2021.
  -->
 
-<aura:component description="RC_basketModel" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_CustomSearchController">
+<aura:component description="RC_basketModel" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="RC_BasketModelController">
     <aura:attribute type="Boolean" name="isOpened" default="false"/>
     <aura:handler event="c:RC_ModalClosedEvent" action="{!c.setModalFlag}"/>
     <aura:registerEvent type="c:RC_OvermouseCloseEvent" name="modalCloseEvent"/>

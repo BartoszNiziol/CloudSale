@@ -4,7 +4,7 @@
 
 <aura:component description="RC_ProductDescription"
                 implements="force:hasRecordId, forceCommunity:availableForAllPageTypes"
-                controller="RC_CustomSearchController" access="global">
+                controller="RC_ProductDescriptionController" access="global">
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="imagesLinks" type="List"/>
     <aura:attribute name="simpleRecord" type="Object"/>

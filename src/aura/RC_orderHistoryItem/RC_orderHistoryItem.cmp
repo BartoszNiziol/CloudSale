@@ -2,7 +2,7 @@
  - Created by BRITENET on 03.05.2021.
  -->
 
-<aura:component description="RC_orderHistoryItem" implements="force:hasRecordId" access="global" controller="RC_CustomSearchController">
+<aura:component description="RC_orderHistoryItem" implements="force:hasRecordId" access="global" controller="RC_OrderHistoryItemController">
     <aura:attribute type="Decimal" name="quantity"/>
     <aura:attribute type="String" name="productName"/>
     <aura:attribute name="imagesLinks" type="List"/>

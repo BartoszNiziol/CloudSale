@@ -91,8 +91,6 @@ public with sharing class RC_CustomSearchController {
              orderItem.Quantity -= amount;
             update orderItem;
         }
-
-
     }
 
     @AuraEnabled
