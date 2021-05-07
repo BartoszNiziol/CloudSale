@@ -12,14 +12,4 @@
         <img src="{!$Resource.NStyle+'/niture/icon/3.png'}"/>
 
     </div>
-
-<!--    <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">-->
-<!--        <div class="slds-modal__container">-->
-<!--            <div class="slds-modal__content slds-p-around&#45;&#45;medium">-->
-<!--                <div>-->
-<!--                    <c:RC_basket isPreview="true" />-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
     </aura:component>

@@ -5,6 +5,11 @@
     color:white;
     background-color:black;
 }
+.THIS .slds-nubbin_bottom{
+        color:white;
+        background-color:black;
+}
+
 .THIS .quantity {
      height:45px;
         font-size:20px;
@@ -12,4 +17,8 @@
 .THIS .cart button {
 
     text-align: -webkit-center;
+}
+.THIS .popover {
+             color:white;
+            background-color:black;
 }

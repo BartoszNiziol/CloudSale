@@ -9,9 +9,9 @@
         var amount = component.get('v.amount');
         if (amount < 1) {
             component.find('amountError').showCustomPopover({
-                body: "Ammount must be 1 or higher",
+                body: "Amount must be 1 or higher",
                 referenceSelector: ".quantity",
-                cssClass: "popoverclass,cPopoverOpener,slds-m-bottom_xx-large,slds-nubbin_bottom"
+                cssClass: "popoverclass,cPopoverOpener,slds-m-bottom_xx-large,slds-nubbin_bottom,popover"
             }).then(function (overlay) {
                 component._overlay = overlay;
                 setTimeout(function () {
@@ -53,5 +53,9 @@
             }
         });
         $A.enqueueAction(action);
+    },
+
+    photoClick: function (component, event, helper) {
+
     }
 })

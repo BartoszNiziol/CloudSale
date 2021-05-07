@@ -14,6 +14,7 @@
     <aura:attribute name="contactId" type="String" default="0030900000CdnRRAAZ"/>
     <aura:attribute name="addedToBasket" type="Boolean"/>
     <aura:attribute name="amount" type="Decimal"/>
+    <aura:attribute name="actualPhotoNumber" type="Integer" default="0"/>
     <aura:registerEvent name="RC_AddToBasketEvent" type="c:RC_AddToBasketEvent"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
@@ -71,8 +72,17 @@
                         <div class="row" style="display:flex; margin-left:20%; margin-right:20%;">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="img_box" style="border: white;">
-                                    <figure><img src="{!v.imagesLinks[0]}"
-                                                 style="height: 200px; width:650px;"/></figure>
+                                    <img src="{!v.imagesLinks[0]}"
+                                         style="height: 300px; width:350px;" class="mainPhoto"/>
+                                </div>
+                                <div style="display:flex; padding:10px; margin:10px;">
+                                    <img src="{!v.imagesLinks[1]}"
+                                         style="height:100px; width:33%; padding: 5px;"  onclick="{!c.photoClick}" name="1"/>
+                                    <img src="{!v.imagesLinks[2]}"
+                                         style="height:100px; width:33%; padding: 5px;"  onclick="{!c.photoClick}" name="2"/>
+                                    <img src="{!v.imagesLinks[3]}"
+                                         style="height:100px; width:33%; padding: 5px;"  onclick="{!c.photoClick}" name="3"/>
+
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 product_detail_side">
@@ -93,9 +103,9 @@
                                             placerat eleifend leo.
                                         </p>
                                         <div class="cart">
-                                            <div class="quantity" style="padding-top:80px; width:40px; padding-bottom:10px;" >
-                                                <!--                            <input step="1" min="1" max="5" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" type="number">-->
-                                                <ui:inputNumber label="Ammount" value="{!v.amount}" updateOn="keyup"/>
+                                            <div class="quantity"
+                                                 style="padding-top:80px; width:60px; padding-bottom:10px;">
+                                                <ui:inputNumber label="Amount" value="{!v.amount}" updateOn="keyup"/>
                                             </div>
                                             <div style="padding-top: 10px; margin-left:10px; text-align: -webkit-center;">
                                                 <lightning:overlayLibrary aura:id="amountError"/>

@@ -40,22 +40,6 @@
             afterScriptsLoaded="{!c.onAfterScriptsLoaded}"
     />
 
-    <!--    <div class="slds-grid" role="banner" style="border: 2px solid black; margin:5px; border-radius:15px;">-->
-    <!--        <div class="slds-col slds-size_2-of-12">-->
-    <!--            <a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">-->
-    <!--                <img src="{!v.simpleRecord.Product_Image_Link__c}" width="200" height="300"/>-->
-    <!--            </a>-->
-    <!--        </div>-->
-    <!--        <div class="slds-col slds-size_10-of-12" style="margin-left:5 px; ">-->
-    <!--            <p class="slds-text-heading_large">-->
-    <!--                <a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}"> {!v.simpleRecord.Name}</a>-->
-    <!--            </p>-->
-    <!--            <p class="slds-avatar_profile-image-medium"></p>-->
-    <!--            <h1 class="slds-page-header__title slds-m-right&#45;&#45;small  slds-truncate slds-align-bottom"-->
-    <!--                style="margin-top:10%"><a href="{! $Site.siteUrlPrefix + '/product/' + v.simpleRecord.Id}">Price:-->
-    <!--                {!v.simpleRecord.Price__c} €</a></h1>-->
-    <!--        </div>-->
-    <!--    </div>-->
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="full product" style="width:450px;">
             <div class="product_img">

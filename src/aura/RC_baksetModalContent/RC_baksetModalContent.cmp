@@ -7,5 +7,4 @@
     <aura:handler event="c:RC_OvermouseCloseEvent" action="{!c.closeModal}"/>
     <lightning:overlayLibrary aura:id="overlayLib"/>
     <c:RC_basket isPreview="true" />
-
 </aura:component>

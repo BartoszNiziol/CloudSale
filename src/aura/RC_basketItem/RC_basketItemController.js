@@ -7,7 +7,7 @@
         var quantity = component.get("v.quantity");
         if (amount < 1) {
             component.find('amountError').showCustomPopover({
-                body: "Ammount must be 1 or higher",
+                body: "Amount must be 1 or higher",
                 referenceSelector: ".amountHolder",
                 cssClass: "popoverclass,cPopoverOpener,slds-m-bottom_xx-large,slds-nubbin_bottom"
             }).then(function (overlay) {
