@@ -9,6 +9,5 @@
       component.set('v.recordIds', ids);
       sessionStorage.removeItem('customSearch--recordIds');
     }
-
   }
 })
