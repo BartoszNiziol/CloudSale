@@ -4,7 +4,7 @@
 ({
      closeModal:function(component,event,helper){
                   component.find("overlayLib").notifyClose();
-                  var ev = $A.get("e.c:RC_ModalClosedEvent");
+                  let ev = $A.get("e.c:RC_ModalClosedEvent");
                   ev.fire();
                  }
 })
