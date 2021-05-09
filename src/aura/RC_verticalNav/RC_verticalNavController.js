@@ -3,7 +3,7 @@
  */
 ({
    onClick : function(component, event, helper) {
-       var id = event.target.dataset.menuItemId;
+       let id = event.target.dataset.menuItemId;
        if (id) {
            component.getSuper().navigate(id);
         }

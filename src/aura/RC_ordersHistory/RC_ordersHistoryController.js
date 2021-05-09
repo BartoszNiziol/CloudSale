@@ -3,7 +3,7 @@
  */
 ({
     init: function (component, event, helper) {
-        var action = component.get("c.searchOrders");
+        let action = component.get("c.searchOrders");
         action.setCallback(this, function (response) {
             let state = response.getState();
             console.log(state);

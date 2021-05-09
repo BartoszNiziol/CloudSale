@@ -4,9 +4,9 @@
 ({
     handleClick: function (component, event, helper) {
 
-        var itemId = component.get('v.recordId');
-        var contactId = component.get('v.contactId');
-        var amount = component.get('v.amount');
+        let itemId = component.get('v.recordId');
+        let contactId = component.get('v.contactId');
+        let amount = component.get('v.amount');
         if (amount < 1) {
             component.find('amountError').showCustomPopover({
                 body: "Amount must be 1 or higher",
@@ -31,7 +31,7 @@
                 console.log(state);
                 if (state == "SUCCESS") {
                     component.set("v.addedToBasket", true);
-                    var toastEvent = $A.get("e.force:showToast");
+                    let toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "Success!",
                         "message": "Product has been added to your basket."
@@ -44,7 +44,7 @@
     },
 
     init: function (component, event, helper) {
-        var itemId = component.get('v.recordId');
+        let itemId = component.get('v.recordId');
         let action = component.get("c.getImagesLinks");
         action.setParam('productId', itemId);
         action.setCallback(this, function (response) {

@@ -16,7 +16,7 @@
     },
 
     onClicked: function (component, event, helper) {
-        var urlEvent = $A.get("e.force:navigateToURL");
+        let urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": "/basket"
         });
@@ -25,7 +25,7 @@
     },
 
     openmodal: function (component, event, helper) {
-        var modalBody;
+        let modalBody;
         console.log("isOpened:" + component.get("v.isOpened"));
         if (!component.get("v.isOpened")) {
             $A.createComponent("c:RC_baksetModalContent", {},
@@ -49,7 +49,7 @@
     },
 
     closeBasketModal: function (component, event, helper) {
-        var ev = $A.get("e.c:RC_OvermouseCloseEvent");
+        let ev = $A.get("e.c:RC_OvermouseCloseEvent");
         ev.fire();
     }
 })

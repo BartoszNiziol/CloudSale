@@ -3,8 +3,8 @@
  */
 ({
     deleteItemFromBasket: function (component, event, helper) {
-        var amount = component.get("v.amount");
-        var quantity = component.get("v.quantity");
+        let amount = component.get("v.amount");
+        let quantity = component.get("v.quantity");
         if (amount < 1) {
             component.find('amountError').showCustomPopover({
                 body: "Amount must be 1 or higher",
@@ -35,15 +35,15 @@
                 }, 3000);
             });
         } else {
-            var selectedEventId = event.target.id;
-            var msg = 'Are you sure you want to delete this product?';
+            let selectedEventId = event.target.id;
+            let msg = 'Are you sure you want to delete this product?';
             console.log("before");
             if (!confirm(msg)) {
                 console.log("in if");
                 return false;
             } else {
                 console.log("else");
-                var productId = component.get("v.ProductId");
+                let productId = component.get("v.ProductId");
 
                 console.log(productId);
                 let deleteAction = component.get("c.deleteProductFromBasket");
@@ -53,13 +53,13 @@
                     let state = response.getState();
                 });
                 $A.enqueueAction(deleteAction);
-                var compEvents = component.getEvent("RC_RefreshBasketEvent");
+                let compEvents = component.getEvent("RC_RefreshBasketEvent");
                 compEvents.fire();
             }
         }
     },
     init: function (component, event, helper) {
-        var itemId = component.get('v.recordId');
+        let itemId = component.get('v.recordId');
         let action = component.get("c.getImagesLinks");
         action.setParam('productId', itemId);
         action.setCallback(this, function (response) {

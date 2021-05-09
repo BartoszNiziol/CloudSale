@@ -62,12 +62,10 @@
                                          style="height: 300px; width:350px;" class="mainPhoto"/>
                                 </div>
                                 <div style="display:flex; padding:10px; margin:10px;">
-                                    <img src="{!v.imagesLinks[1]}"
-                                         style="height:100px; width:33%; padding: 5px;"  onclick="{!c.photoClick}" name="1"/>
-                                    <img src="{!v.imagesLinks[2]}"
-                                         style="height:100px; width:33%; padding: 5px;"  onclick="{!c.photoClick}" name="2"/>
-                                    <img src="{!v.imagesLinks[3]}"
-                                         style="height:100px; width:33%; padding: 5px;"  onclick="{!c.photoClick}" name="3"/>
+                                    <aura:iteration items="{!v.imagesLinks}" var="link" indexVar="index">
+                                        <img src="{!link}"
+                                             style="height:100px; width:25%; padding: 5px;"/>
+                                    </aura:iteration>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 product_detail_side">
