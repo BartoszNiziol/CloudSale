@@ -10,13 +10,7 @@
             if (state == "SUCCESS") {
                 component.set('v.wraps', response.getReturnValue());
             }else {
-                 var appEvent = $A.get("e.c:ToastEvent");
-                                appEvent.setParams({
-                                                       "title": 'Basket load filed',
-                                                       "message": response.getError()[0].message,
-                                                       "type" : 'error'
-                                                   });
-                                 appEvent.fire();
+               helper.toast('Basket load filed',response.getError()[0].message,'error');
             }
         });
         $A.enqueueAction(action);
@@ -27,31 +21,19 @@
         actionSubmit.setCallback(this, function (response) {
             let state = response.getState();
             if (state == "SUCCESS") {
-                var appEvent = $A.get("e.c:ToastEvent");
-                                appEvent.setParams({
-                                                       "title": 'Submit',
-                                                       "message": 'Order submit completed',
-                                                       "type" : 'success'
-                                                   });
-                                 appEvent.fire();
-
+                helper.toast('Submit','Order submit completed','success');
                 let urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": "/"
                 });
                 urlEvent.fire();
             }else{
-                 var appEvent = $A.get("e.c:ToastEvent");
-                                appEvent.setParams({
-                                                       "title": 'Submit order filed',
-                                                       "message": response.getError()[0].message,
-                                                       "type" : 'error'
-                                                   });
-                                 appEvent.fire();
+                    helper.toast('Submit order filed',response.getError()[0].message,'error');
             }
         });
         $A.enqueueAction(actionSubmit);
     }
+
 })
 
 

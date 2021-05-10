@@ -12,6 +12,7 @@ public with sharing class RC_ProductHandler {
             for (Product2 p : results) {
                 ProductsIds.add(p.Id);
             }
+           // Integer err = 1/0;
             return ProductsIds;
     }
 }

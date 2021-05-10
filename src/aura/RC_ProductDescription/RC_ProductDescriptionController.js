@@ -30,21 +30,9 @@
                 console.log(state);
                 if (state == "SUCCESS") {
                     component.set("v.addedToBasket", true);
-             var appEvent = $A.get("e.c:ToastEvent");
-                                appEvent.setParams({
-                                                       "title": 'Success',
-                                                       "message": 'Product added to Your basket',
-                                                       "type" : 'success'
-                                                   });
-                                 appEvent.fire();
+                     helper.toast('Success','Product added to Your basket','success');
                 }else{
-                                 var appEvent = $A.get("e.c:ToastEvent");
-                                 appEvent.setParams({
-                                                        "title": 'Adding to basket Error',
-                                                        "message": response.getError()[0].message,
-                                                        "type" : 'error'
-                                                    });
-                                  appEvent.fire();
+                                    helper.toast('Adding to basket Error',response.getError()[0].message,'error');
                              }
             });
             $A.enqueueAction(action);
@@ -60,13 +48,7 @@
             if (state == "SUCCESS") {
                 component.set('v.imagesLinks', response.getReturnValue());
             }else{
-                             var appEvent = $A.get("e.c:ToastEvent");
-                             appEvent.setParams({
-                                                    "title": 'Images Load Error',
-                                                    "message": response.getError()[0].message,
-                                                    "type" : 'error'
-                                                });
-                              appEvent.fire();
+                  helper.toast('Images Load Error',response.getError()[0].message,'error');
                          }
         });
         $A.enqueueAction(action);

@@ -55,7 +55,9 @@
                                 </div>
                             </aura:iteration>
                             <aura:set attribute="else">
-                                False
+                                <div style="text-align:center; font-weight:bold; font-size:20px; "  >
+                                No results found
+                                </div>
                             </aura:set>
                         </aura:if>
                     </div>

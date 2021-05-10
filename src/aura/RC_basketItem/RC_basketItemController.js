@@ -13,7 +13,6 @@
             }).then(function (overlay) {
                 component._overlay = overlay;
                 setTimeout(function () {
-                    //close the popover after 3 seconds
                     if (component._overlay) {
                         component._overlay.close();
                     }
@@ -28,7 +27,6 @@
             }).then(function (overlay) {
                 component._overlay = overlay;
                 setTimeout(function () {
-                    //close the popover after 3 seconds
                     if (component._overlay) {
                         component._overlay.close();
                     }
@@ -69,13 +67,7 @@
             if (state == "SUCCESS") {
                 component.set('v.imagesLinks', response.getReturnValue());
             }else{
-                var appEvent = $A.get("e.c:ToastEvent");
-                appEvent.setParams({
-                                       "title": 'Images Load Error',
-                                       "message": response.getError()[0].message,
-                                       "type" : 'error'
-                                   });
-                 appEvent.fire();
+                 helper.toast('Images Load Error',response.getError()[0].message,'error');
             }
         });
         $A.enqueueAction(action);

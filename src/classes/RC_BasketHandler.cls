@@ -51,7 +51,7 @@ public with sharing class RC_BasketHandler {
     }
 
     public static List<RC_BasketWrapper> getBasketProductsIds(){
-
+     //   Integer err = 1/0;
         User user = [SELECT ContactId FROM User WHERE Id = :UserInfo.getUserId()];
         List<RC_BasketWrapper> results = new List<RC_BasketWrapper>();
         for (order ord : [

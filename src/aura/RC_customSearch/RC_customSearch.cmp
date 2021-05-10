@@ -2,9 +2,11 @@
  - Created by BRITENET on 28.04.2021.
  -->
 
-<aura:component implements="forceCommunity:searchInterface" controller="RC_ProductController">
+<aura:component implements="forceCommunity:searchInterface" controller="RC_ProductSearchController">
     <aura:attribute name="searchText" type="String" default=""/>
     <aura:registerEvent name="SearchEvent" type="c:RC_SearchEvent"/>
+    <aura:registerEvent type="c:ToastEvent" name="toastEvent"/>
+    <c:RC_ToastDisplay />
     <c:RC_Spinner aura:id="spinner"/>
     <div class="slds-form-element slds-lookup" data-select="single">
         <div class="slds-form-element__control">

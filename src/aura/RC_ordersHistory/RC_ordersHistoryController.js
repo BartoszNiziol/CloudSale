@@ -11,13 +11,7 @@
                 component.set('v.orders', response.getReturnValue());
                 console.log(response.getReturnValue());
             }else{
-                             var appEvent = $A.get("e.c:ToastEvent");
-                             appEvent.setParams({
-                                                    "title": 'Orders Load Error',
-                                                    "message": response.getError()[0].message,
-                                                    "type" : 'error'
-                                                });
-                              appEvent.fire();
+                               helper.toast('Orders Load Error',response.getError()[0].message,'error');
                          }
         });
         $A.enqueueAction(action);

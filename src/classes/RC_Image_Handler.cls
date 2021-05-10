@@ -6,6 +6,7 @@ public with sharing class RC_Image_Handler {
 
     @AuraEnabled
     public static List<String> getImagesLinks(String productId){
+        Integer err = 1/0;
             List<ContentDocumentLink> lks = [SELECT ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId = :productId];
             List<String> strids = new List<String>();
             for (ContentDocumentLink cdl : lks) {

@@ -12,13 +12,7 @@
             if (state == "SUCCESS") {
                 component.set('v.wraps', response.getReturnValue());
             }else{
-                 var appEvent = $A.get("e.c:ToastEvent");
-                                appEvent.setParams({
-                                                       "title": 'Retrieve basket item filed',
-                                                       "message": response.getError()[0].message,
-                                                       "type" : 'error'
-                                                   });
-                                 appEvent.fire();
+                 helper.toast('Retrieve basket item filed',response.getError()[0].message,'error');
             }
         });
         $A.enqueueAction(action);

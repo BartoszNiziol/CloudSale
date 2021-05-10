@@ -10,7 +10,5 @@ public with sharing class RC_ProductSearchController {
         }catch (Exception e){
             throw new AuraHandledException(e.getMessage());
         }
-
     }
-
 }

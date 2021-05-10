@@ -11,15 +11,16 @@
         action.setParams({ 'searchText': searchText });
         action.setCallback(this, function (response) {
             let state = response.getState();
-            console.log(response.getError());
+        console.log(state);
             if (state === 'SUCCESS') {
                 let ids = response.getReturnValue();
                 sessionStorage.setItem('customSearch--recordIds', JSON.stringify(ids));
                 let searchEvents = $A.get("e.c:RC_SearchEvent");
-                console.log('bef ser');
                 searchEvents.fire();
-                console.log('af ser');
-            }
+            }else{
+        helper.toast('Product Load Error',response.getError()[0].message,'error');
+                         }
+
         });
         $A.enqueueAction(action);
     },
