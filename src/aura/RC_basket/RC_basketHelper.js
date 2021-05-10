@@ -3,8 +3,7 @@
  */
 ({
     toast : function(title,message,type){
-            console.log('cstFct');
-         var appEvent = $A.get("e.c:ToastEvent");
+         let appEvent = $A.get("e.c:ToastEvent");
                                         appEvent.setParams({
                                                                "title": title,
                                                                "message": message,

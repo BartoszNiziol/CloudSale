@@ -4,19 +4,17 @@
 ({
      fireToast: function (component, event, helper) {
      let toastEvent = $A.get("e.force:showToast");
-
-                    var eventMessage = event.getParam('message');
-                    var eventType = event.getParam('type');
-                    var eventTitle = event.getParam('title');
-
-                    let toastMessage = component.get("v.message");
-                    let toastType = component.get("v.toastType");
-                    let toastTitle= component.get("v.title");
-                    toastEvent.setParams({
-                        "title": eventTitle,
-                        "message": eventMessage,
-                        "type" : eventType
-                    });
-                    toastEvent.fire();
+      let eventMessage = event.getParam('message');
+      let eventType = event.getParam('type');
+      let eventTitle = event.getParam('title');
+      let toastMessage = component.get("v.message");
+      let toastType = component.get("v.toastType");
+      let toastTitle= component.get("v.title");
+      toastEvent.setParams({
+          "title": eventTitle,
+          "message": eventMessage,
+          "type" : eventType
+      });
+      toastEvent.fire();
     }
 })

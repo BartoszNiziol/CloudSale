@@ -22,3 +22,14 @@
              color:white;
             background-color:black;
 }
+.THIS .caru {
+
+    height:150px;
+    width:350px;
+    margin-right:15px;
+    object-fit: contain;
+}
+.THIS .carImg {
+    object-fit: contain;
+      height:15px;
+}
