@@ -31,12 +31,13 @@
                 console.log(state);
                 if (state == "SUCCESS") {
                     component.set("v.addedToBasket", true);
-                    let toastEvent = $A.get("e.force:showToast");
-                    toastEvent.setParams({
-                        "title": "Success!",
-                        "message": "Product has been added to your basket."
-                    });
-                    toastEvent.fire();
+             var appEvent = $A.get("e.c:ToastEvent");
+                                appEvent.setParams({
+                                                       "title": 'Success',
+                                                       "message": 'Product added to Your basket',
+                                                       "type" : 'success'
+                                                   });
+                                 appEvent.fire();
                 }else{
                                  var appEvent = $A.get("e.c:ToastEvent");
                                  appEvent.setParams({

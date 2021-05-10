@@ -27,12 +27,14 @@
         actionSubmit.setCallback(this, function (response) {
             let state = response.getState();
             if (state == "SUCCESS") {
-                let toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "Success!",
-                    "message": "Your order has been submitted."
-                });
-                toastEvent.fire();
+                var appEvent = $A.get("e.c:ToastEvent");
+                                appEvent.setParams({
+                                                       "title": 'Submit',
+                                                       "message": 'Order submit completed',
+                                                       "type" : 'success'
+                                                   });
+                                 appEvent.fire();
+
                 let urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": "/"
