@@ -7,7 +7,7 @@ public with sharing class RC_ProductDescriptionController {
     @AuraEnabled
     public static List<String> getImagesLinks(String productId){
         try{
-            return RC_Image_Handler.getImagesLinks(productId);
+            return RC_ProductHandler.getImagesLinks(productId);
         }catch (Exception e){
             System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
