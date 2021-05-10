@@ -5,12 +5,20 @@
 public with sharing class RC_BasketItemController {
     @AuraEnabled
     public static void deleteProductFromBasket(String productId, Decimal amount){
-       RC_BasketHandler.deleteProductFromBasket(productId,amount);
+        try{
+            RC_BasketHandler.deleteProductFromBasket(productId,amount);
+        }catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
     }
 
     @AuraEnabled
     public static List<String> getImagesLinks(String productId){
-        return RC_Image_Handler.getImagesLinks(productId);
+        try {
+            return RC_Image_Handler.getImagesLinks(productId);
+        }catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
     }
 
 }

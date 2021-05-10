@@ -9,18 +9,23 @@
             let foundIds = [];
             if (state == "SUCCESS") {
                 component.set('v.wraps', response.getReturnValue());
+            }else {
+                 var appEvent = $A.get("e.c:ToastEvent");
+                                appEvent.setParams({
+                                                       "title": 'Basket load filed',
+                                                       "message": response.getError()[0].message,
+                                                       "type" : 'error'
+                                                   });
+                                 appEvent.fire();
             }
         });
         $A.enqueueAction(action);
-        console.log('finito');
     },
 
     submitOrderBasket: function (component, event, helper) {
         let actionSubmit = component.get("c.submitOrder");
-        console.log('HERE');
         actionSubmit.setCallback(this, function (response) {
             let state = response.getState();
-            console.log("Submit order state" + state);
             if (state == "SUCCESS") {
                 let toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
@@ -33,6 +38,14 @@
                     "url": "/"
                 });
                 urlEvent.fire();
+            }else{
+                 var appEvent = $A.get("e.c:ToastEvent");
+                                appEvent.setParams({
+                                                       "title": 'Submit order filed',
+                                                       "message": response.getError()[0].message,
+                                                       "type" : 'error'
+                                                   });
+                                 appEvent.fire();
             }
         });
         $A.enqueueAction(actionSubmit);

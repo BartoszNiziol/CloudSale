@@ -1,0 +1,9 @@
+<!--
+ - Created by BRITENET on 10.05.2021.
+ -->
+
+<aura:event type="APPLICATION" description="ToastEvent">
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="type" type="String"/>
+    <aura:attribute name="title" type="String"/>
+</aura:event>

@@ -3,16 +3,26 @@
  */
 ({
     getBasket: function (component, event, helper) {
+         console.log('stat');
         let action = component.get("c.getBasketProductsIds");
         action.setCallback(this, function (response) {
             let state = response.getState();
             let foundIds = [];
+            console.log(state);
             if (state == "SUCCESS") {
                 component.set('v.wraps', response.getReturnValue());
+            }else{
+                 var appEvent = $A.get("e.c:ToastEvent");
+                                appEvent.setParams({
+                                                       "title": 'Retrieve basket item filed',
+                                                       "message": response.getError()[0].message,
+                                                       "type" : 'error'
+                                                   });
+                                 appEvent.fire();
             }
         });
         $A.enqueueAction(action);
-        console.log('finito');
+
     },
 
     onClicked: function (component, event, helper) {

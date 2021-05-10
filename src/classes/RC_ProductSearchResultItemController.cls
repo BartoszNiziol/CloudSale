@@ -5,7 +5,11 @@
 public with sharing class RC_ProductSearchResultItemController {
     @AuraEnabled
     public static List<String> getImagesLinks(String productId){
-        return RC_Image_Handler.getImagesLinks(productId);
+        try {
+            return RC_Image_Handler.getImagesLinks(productId);
+        }catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
     }
 
 }

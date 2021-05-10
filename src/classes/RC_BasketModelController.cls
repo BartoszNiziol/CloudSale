@@ -5,7 +5,10 @@
 public with sharing class RC_BasketModelController {
 
     public static List<RC_BasketWrapper> getBasketProductsIds(){
-        return RC_BasketHandler.getBasketProductsIds();
+        try{
+            return RC_BasketHandler.getBasketProductsIds();
+        }catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
     }
-
 }

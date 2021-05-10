@@ -11,7 +11,15 @@
                 let state = response.getState();
                 if (state == "SUCCESS") {
                     component.set('v.imagesLinks', response.getReturnValue());
-                }
+                }else{
+                                 var appEvent = $A.get("e.c:ToastEvent");
+                                 appEvent.setParams({
+                                                        "title": 'Images Load Error',
+                                                        "message": response.getError()[0].message,
+                                                        "type" : 'error'
+                                                    });
+                                  appEvent.fire();
+                             }
             });
             $A.enqueueAction(action);
         }

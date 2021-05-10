@@ -9,6 +9,8 @@
     <aura:handler name="init" value="this" action="{!c.getBasket}"/>
     <aura:handler name="RC_RefreshBasketEvent" event="c:RC_RefreshBasketEvent" action="{!c.getBasket}"/>
     <aura:handler event="c:RC_AddToBasketEvent" action="{!c.addToBasket}"/>
+    <aura:registerEvent type="c:ToastEvent" name="toastEvent"/>
+    <c:RC_ToastDisplay />
     <aura:if isTrue="{!not(empty(v.wraps))}">
         <aura:iteration items="{!v.wraps}" var="wrap">
             <c:RC_basketItem ProductId="{!wrap.productId}" recordId="{!wrap.productId}" quantity="{!wrap.quantity}" isPreview="{!v.isPreview}"/>

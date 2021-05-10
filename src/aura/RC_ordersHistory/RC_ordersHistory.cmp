@@ -5,6 +5,8 @@
 <aura:component description="RC_ordersHistory" implements="forceCommunity:availableForAllPageTypes" access="global" controller="RC_OrderHistoryController">
    <aura:attribute type="list" name="orders" />
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:registerEvent type="c:ToastEvent" name="toastEvent"/>
+    <c:RC_ToastDisplay />
 <div style="background-color:white;">
     <aura:if isTrue="{!not(empty(v.orders))}">
         <lightning:accordion aura:id="accordion">

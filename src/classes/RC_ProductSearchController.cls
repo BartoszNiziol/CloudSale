@@ -5,8 +5,12 @@
 public with sharing class RC_ProductSearchController {
     @AuraEnabled
     public static List<String> searchForIds(String searchText) {
-        System.debug('tu');
-        return  RC_ProductHandler.searchForIds(searchText);
+        try{
+            return  RC_ProductHandler.searchForIds(searchText);
+        }catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+
     }
 
 }

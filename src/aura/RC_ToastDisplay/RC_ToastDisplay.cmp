@@ -3,9 +3,8 @@
  -->
 
 <aura:component description="RC_ToastDisplay">
-    <aura:attribute name="message" type="String"/>
-    <aura:attribute name="toastType" type="String"/>
-    <aura:attribute name="title" type="String"/>
-    <aura:handler action="{!fireToast}" name="init" value="{!this}"/>
-
+    <aura:attribute name="message" type="String" default="unknown error"/>
+    <aura:attribute name="toastType" type="String" default="error"/>
+    <aura:attribute name="title" type="String" default="unknown"/>
+    <aura:handler action="{!c.fireToast}" event="c:ToastEvent" />
 </aura:component>

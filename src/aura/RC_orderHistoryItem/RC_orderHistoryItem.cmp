@@ -9,6 +9,8 @@
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute type="Decimal" name="price"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:registerEvent type="c:ToastEvent" name="toastEvent"/>
+    <c:RC_ToastDisplay />
 
 
     <div style="display: flex; margin-bottom: 6px; "  >

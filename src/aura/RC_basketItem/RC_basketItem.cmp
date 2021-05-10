@@ -16,6 +16,8 @@
     <aura:attribute name="isPreview" type="Boolean" default="false"/>
     <aura:attribute name="showConfirmDialog" type="boolean" default="false"/>
     <aura:registerEvent name="RC_RefreshBasketEvent" type="c:RC_RefreshBasketEvent"/>
+    <aura:registerEvent type="c:ToastEvent" name="toastEvent"/>
+    <c:RC_ToastDisplay />
     <force:recordData aura:id="recordLoader"
                       recordId="{!v.recordId}"
                       layoutType="FULL"

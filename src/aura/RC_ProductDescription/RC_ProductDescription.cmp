@@ -17,6 +17,8 @@
     <aura:attribute name="actualPhotoNumber" type="Integer" default="0"/>
     <aura:registerEvent name="RC_AddToBasketEvent" type="c:RC_AddToBasketEvent"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:registerEvent type="c:ToastEvent" name="toastEvent"/>
+    <c:RC_ToastDisplay />
 
     <ltng:require
             styles="{!join(',',
