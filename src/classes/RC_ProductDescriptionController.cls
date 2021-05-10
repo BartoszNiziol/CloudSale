@@ -9,6 +9,7 @@ public with sharing class RC_ProductDescriptionController {
         try{
             return RC_Image_Handler.getImagesLinks(productId);
         }catch (Exception e){
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }

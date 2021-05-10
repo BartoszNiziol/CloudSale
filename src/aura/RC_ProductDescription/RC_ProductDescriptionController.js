@@ -15,7 +15,6 @@
             }).then(function (overlay) {
                 component._overlay = overlay;
                 setTimeout(function () {
-                    //close the popover after 3 seconds
                     if (component._overlay) {
                         component._overlay.close();
                     }

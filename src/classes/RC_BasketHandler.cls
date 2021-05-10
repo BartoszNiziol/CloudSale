@@ -6,9 +6,6 @@ public with sharing class RC_BasketHandler {
 
     public static void addToBasket (String customerId , String itemId, Decimal amount){
 
-        try {
-
-
             User user = [SELECT ContactId,FirstName,LastName FROM User WHERE Id = :UserInfo.getUserId()];
             List<OrderItem> orderItems;
             List<Order> userOrders = [SELECT Id,Name,Pricebook2Id FROM Order WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
@@ -51,16 +48,9 @@ public with sharing class RC_BasketHandler {
                 item.Quantity += amount;
                 update item;
             }
-        }catch (Exception e){
-            throw new AuraHandledException('Adding to basket failed' + e.getMessage());
-
-        }
     }
 
     public static List<RC_BasketWrapper> getBasketProductsIds(){
-        try{
-
-
 
         User user = [SELECT ContactId FROM User WHERE Id = :UserInfo.getUserId()];
         List<RC_BasketWrapper> results = new List<RC_BasketWrapper>();
@@ -76,17 +66,9 @@ public with sharing class RC_BasketHandler {
             }
         }
         return results;
-
-        }catch (Exception e){
-            throw new AuraHandledException('Retrieving from basket failed' + e.getMessage());
-        }
     }
 
     public static void deleteProductFromBasket(String productId, Decimal amount){
-
-        try {
-
-
             User user = [SELECT ContactId,Id FROM User WHERE Id = :UserInfo.getUserId()];
             Order userOrders = [SELECT Id FROM Order WHERE Contact__c = :user.ContactId AND Status = 'Basket'];
             OrderItem orderItem = [SELECT Id,Quantity FROM OrderItem WHERE Product2.Id = :productId AND OrderId = :userOrders.Id];
@@ -97,9 +79,6 @@ public with sharing class RC_BasketHandler {
                 orderItem.Quantity -= amount;
                 update orderItem;
             }
-        }catch (Exception e){
-            throw new AuraHandledException('Deleting from basket filed' + e.getMessage());
-        }
     }
 
 }

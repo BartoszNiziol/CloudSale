@@ -6,7 +6,6 @@ public with sharing class RC_Image_Handler {
 
     @AuraEnabled
     public static List<String> getImagesLinks(String productId){
-        try {
             List<ContentDocumentLink> lks = [SELECT ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId = :productId];
             List<String> strids = new List<String>();
             for (ContentDocumentLink cdl : lks) {
@@ -28,10 +27,5 @@ public with sharing class RC_Image_Handler {
                 }
             }
             return downloadLinks;
-        }catch (Exception e){
-            System.debug('in throw handelr');
-            throw new AuraHandledException('Retrieving images filed' + e.getMessage());
-        }
     }
-
 }

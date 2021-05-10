@@ -6,7 +6,6 @@ public with sharing class RC_OrderHandler {
 
 
     public static void submitOrder(){
-        try {
             User user = [SELECT ContactId FROM User WHERE Id = :UserInfo.getUserId()];
             Account account = [SELECT Id FROM account WHERE Id = '0010900000HXrUyAAL'];
             Contact contact = [SELECT FirstName, LastName FROM Contact WHERE Id = :user.ContactId];
@@ -51,14 +50,11 @@ public with sharing class RC_OrderHandler {
             order.ContractId = contract.Id;
             order.Pricebook2Id = '01s0900000BzG7tAAF';
             insert order;
-        }catch (Exception e){
-            throw new AuraHandledException('Submitting Your order failed' + e.getMessage());
-        }
     }
 
 
     public static List<Order> searchOrders() {
-        try {
+
             User user = [SELECT ContactId FROM User WHERE Id = :UserInfo.getUserId()];
             List<Order> resultOrders = new List<Order>();
             for (order ord : [
@@ -80,10 +76,5 @@ public with sharing class RC_OrderHandler {
                 resultOrders.add(ord);
             }
             return resultOrders;
-        }catch (Exception e){
-            throw new AuraHandledException('Retrieving Your orders failed' + e.getMessage());
-        }
     }
-
-
 }
