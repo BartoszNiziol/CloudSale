@@ -12,7 +12,7 @@ public with sharing class RC_OrderHistoryController {
             throw new AuraHandledException(e.getMessage());
         }
     }
-
+    @AuraEnabled
     public static void submitComplain(String complainSubject, String complainDescription,String orderName){
         try{
             RC_ComplainHandler.submitComplain(complainSubject,complainDescription,orderName);
@@ -20,5 +20,4 @@ public with sharing class RC_OrderHistoryController {
             throw new AuraHandledException(e.getMessage());
         }
     }
-
 }

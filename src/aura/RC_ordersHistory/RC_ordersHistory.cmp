@@ -2,62 +2,72 @@
  - Created by BRITENET on 03.05.2021.
  -->
 
-<aura:component description="RC_ordersHistory" implements="forceCommunity:availableForAllPageTypes" access="global" controller="RC_OrderHistoryController">
-   <aura:attribute type="list" name="orders" />
+<aura:component description="RC_ordersHistory" implements="forceCommunity:availableForAllPageTypes" access="global"
+                controller="RC_OrderHistoryController">
+    <aura:attribute type="list" name="orders"/>
+    <aura:attribute name="selectedOrderForComplain" type="String"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:registerEvent type="c:ToastEvent" name="toastEvent"/>
-    <c:RC_ToastDisplay />
-<div style="background-color:white;">
-    <aura:if isTrue="{!not(empty(v.orders))}">
-        <lightning:accordion aura:id="accordion">
-            <aura:iteration items="{!v.orders}" var="order">
-<!--                <lightning:button label="click" onclick="{!c.showOrder}"/>-->
-            <lightning:accordionSection name="{!order.Name}" label="{!order.Name}">
-                <aura:set attribute="body">
-                    <aura:iteration items="{!order.OrderItems}" var="orderItem">
+    <c:RC_ToastDisplay/>
+    <div style="background-color:white;">
+        <aura:if isTrue="{!not(empty(v.orders))}">
+            <lightning:accordion aura:id="accordion">
+                <aura:iteration items="{!v.orders}" var="order">
+                    <!--                <lightning:button label="click" onclick="{!c.showOrder}"/>-->
+                    <lightning:accordionSection name="{!order.Name}" label="{!order.Name}">
+                        <aura:set attribute="body">
+                            <aura:iteration items="{!order.OrderItems}" var="orderItem">
 
-                        <c:RC_orderHistoryItem price="{!orderItem.PricebookEntry.Product2.Price__c}"
-                                               quantity="{!orderItem.Quantity}"
-                                               productName="{!orderItem.PricebookEntry.Product2.Name}"
-                                               recordId="{!orderItem.PricebookEntry.Product2.Id}"/>
+                                <c:RC_orderHistoryItem price="{!orderItem.PricebookEntry.Product2.Price__c}"
+                                                       quantity="{!orderItem.Quantity}"
+                                                       productName="{!orderItem.PricebookEntry.Product2.Name}"
+                                                       recordId="{!orderItem.PricebookEntry.Product2.Id}"/>
 
-                    </aura:iteration>
-                    <lightning:button onclick="{!c.openmodal}"> clk</lightning:button>
-                    <div style="margin-left: 25%; color:black;">
-                        Total Price: {!order.TotalAmount} €
-                    </div>
-                </aura:set>
-            </lightning:accordionSection>
-            </aura:iteration>
-        </lightning:accordion>
-    </aura:if>
-</div>
+                            </aura:iteration>
+<!--                            <lightning:button onclick="{!c.openmodal}">Complain</lightning:button>-->
+                            <div onclick="{!c.openmodal}" data-value="{!order.Name}">
+                                <lightning:button label="Complain"  value="{!order.Name}"/>
+                            </div>
+                            <div style="margin-left: 25%; color:black;">
+                                Total Price: {!order.TotalAmount} €
+                            </div>
+                        </aura:set>
+                    </lightning:accordionSection>
+                </aura:iteration>
+            </lightning:accordion>
+        </aura:if>
+    </div>
     <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">
         <div class="slds-modal__container">
             <div class="slds-modal__header">
-                <button class="slds-button slds-button_neutral slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModal}">X
+                <button class="slds-button slds-button_neutral slds-modal__close slds-button--icon-inverse"
+                        title="Close" onclick="{!c.closeModal}">X
                 </button>
             </div>
             <div class="slds-modal__content slds-p-around--medium">
                 <div>
                     <div class="slds-form">
                         <div class="slds-form-element slds-form-element_stacked">
-                            <label class="slds-form-element__label" for="stacked-input-id-01">Complain about order:  </label>
+                            <label class="slds-form-element__label" for="stacked-input-id-01">Complain about
+                                order: </label>
                             <div class="slds-form-element__control">
-                                <input type="text" id="complainSubject" placeholder="Complain Subject" class="slds-input" />
+                                <input type="text" id="complainSubject" placeholder="Complain Subject"
+                                       class="slds-input"/>
                             </div>
                         </div>
                         <div class="slds-form-element slds-form-element_stacked">
                             <label class="slds-form-element__label" for="stacked-input-id-02">Textarea Input</label>
                             <div class="slds-form-element__control">
-                                <textarea id="complainDescription" placeholder="Complain details" class="slds-textarea"></textarea>
+                                <textarea id="complainDescription" placeholder="Complain details"
+                                          class="slds-textarea"></textarea>
                             </div>
                         </div>
                         <button class="slds-button" title="Submit" onclick="{!c.handleComplain}">Submit
                         </button>
+                        <!--                        <div onclick="{!c.handleComplain}" data-value="{!}">-->
+                        <!--                            <lightning:button label="Remove" iconName="utility:delete" iconPosition="left"  variant="destructive" value="123"/>-->
+                        <!--                        </div>-->
                     </div>
-
-
                 </div>
             </div>
             <div class="slds-modal__footer">

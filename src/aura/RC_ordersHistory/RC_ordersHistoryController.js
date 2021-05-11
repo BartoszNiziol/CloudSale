@@ -30,6 +30,11 @@
         },
 
         openmodal: function(component,event,helper) {
+            let target = event.currentTarget;
+            let orderName = target.dataset.value;
+
+            component.set("v.selectedOrderForComplain",orderName)
+
             let cmpTarget = component.find('Modalbox');
             let cmpBack = component.find('Modalbackdrop');
             $A.util.addClass(cmpTarget, 'slds-fade-in-open');
@@ -39,9 +44,25 @@
 
             let complainSubject = document.getElementById('complainSubject').value;
             let complainDescription = document.getElementById('complainDescription').value;
+            let orderName = component.get("v.selectedOrderForComplain");
+            let action = component.get("c.submitComplain");
+            action.setParam("complainSubject", complainSubject);
+            action.setParam("complainDescription", complainDescription);
+            action.setParam("orderName", orderName);
+            action.setCallback(this, function (response) {
+                let state = response.getState();
+                console.log(state+' complain handle');
+                if (state == "SUCCESS") {
+                     helper.toast('Success','Your complain has been submited','success');
+                }else{
+                 helper.toast('Submit complain failed',response.getError()[0].message,'error');
+                }
+            });
+            $A.enqueueAction(action);
 
 
-            alert(complainSubject);
+
+
 
         }
 })
