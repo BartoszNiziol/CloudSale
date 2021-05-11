@@ -13,4 +13,12 @@ public with sharing class RC_OrderHistoryController {
         }
     }
 
+    public static void submitComplain(String complainSubject, String complainDescription,String orderName){
+        try{
+            RC_ComplainHandler.submitComplain(complainSubject,complainDescription,orderName);
+        }catch (Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
 }

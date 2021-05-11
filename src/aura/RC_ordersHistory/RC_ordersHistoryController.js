@@ -30,10 +30,15 @@
         },
 
         openmodal: function(component,event,helper) {
-
-            var cmpTarget = component.find('Modalbox');
-            var cmpBack = component.find('Modalbackdrop');
+            let cmpTarget = component.find('Modalbox');
+            let cmpBack = component.find('Modalbackdrop');
             $A.util.addClass(cmpTarget, 'slds-fade-in-open');
             $A.util.addClass(cmpBack, 'slds-backdrop--open');
+        },
+        handleComplain:function (component,event,helper){
+
+            let complainSubject = component.find('stacked-input-id-02').value;
+            alert(complainSubject);
+
         }
 })
