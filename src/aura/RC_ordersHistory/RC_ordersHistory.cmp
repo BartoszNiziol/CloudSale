@@ -50,7 +50,7 @@
                         <div class="slds-form-element slds-form-element_stacked">
                             <label class="slds-form-element__label" for="stacked-input-id-02">Textarea Input</label>
                             <div class="slds-form-element__control">
-                                <textarea id="complainSubject" placeholder="Complain details" class="slds-textarea"></textarea>
+                                <textarea id="complainDescription" placeholder="Complain details" class="slds-textarea"></textarea>
                             </div>
                         </div>
                         <button class="slds-button" title="Submit" onclick="{!c.handleComplain}">Submit

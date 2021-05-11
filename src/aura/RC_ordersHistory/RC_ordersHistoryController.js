@@ -11,7 +11,7 @@
                 component.set('v.orders', response.getReturnValue());
                 console.log(response.getReturnValue());
             }else{
-                               helper.toast('Orders Load Error',response.getError()[0].message,'error');
+                 helper.toast('Orders Load Error',response.getError()[0].message,'error');
                          }
         });
         $A.enqueueAction(action);
@@ -37,7 +37,10 @@
         },
         handleComplain:function (component,event,helper){
 
-            let complainSubject = component.find('stacked-input-id-02').value;
+            let complainSubject = document.getElementById('complainSubject').value;
+            let complainDescription = document.getElementById('complainDescription').value;
+
+
             alert(complainSubject);
 
         }
