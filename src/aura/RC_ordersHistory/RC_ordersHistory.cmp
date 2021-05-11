@@ -25,11 +25,12 @@
 
                             </aura:iteration>
 <!--                            <lightning:button onclick="{!c.openmodal}">Complain</lightning:button>-->
-                            <div onclick="{!c.openmodal}" data-value="{!order.Name}">
-                                <lightning:button label="Complain"  value="{!order.Name}"/>
-                            </div>
+
                             <div style="margin-left: 25%; color:black;">
                                 Total Price: {!order.TotalAmount} €
+                            </div>
+                            <div onclick="{!c.openmodal}" data-value="{!order.Name}" class="submitOrderButton">
+                                <lightning:button label="Send Order Complain"  value="{!order.Name}" class="bt_main"/>
                             </div>
                         </aura:set>
                     </lightning:accordionSection>
@@ -40,29 +41,29 @@
     <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">
         <div class="slds-modal__container">
             <div class="slds-modal__header">
-                <button class="slds-button slds-button_neutral slds-modal__close slds-button--icon-inverse"
+                <button class="slds-button slds-button_neutral slds-modal__close "
                         title="Close" onclick="{!c.closeModal}">X
                 </button>
             </div>
             <div class="slds-modal__content slds-p-around--medium">
+                <h2 style="text-align:center;">Complain Order</h2>
                 <div>
                     <div class="slds-form">
                         <div class="slds-form-element slds-form-element_stacked">
-                            <label class="slds-form-element__label" for="stacked-input-id-01">Complain about
-                                order: </label>
+                            <label class="slds-form-element__label" for="stacked-input-id-01">Subjesct </label>
                             <div class="slds-form-element__control">
                                 <input type="text" id="complainSubject" placeholder="Complain Subject"
                                        class="slds-input"/>
                             </div>
                         </div>
                         <div class="slds-form-element slds-form-element_stacked">
-                            <label class="slds-form-element__label" for="stacked-input-id-02">Textarea Input</label>
+                            <label class="slds-form-element__label" for="stacked-input-id-02">Description</label>
                             <div class="slds-form-element__control">
                                 <textarea id="complainDescription" placeholder="Complain details"
                                           class="slds-textarea"></textarea>
                             </div>
                         </div>
-                        <button class="slds-button" title="Submit" onclick="{!c.handleComplain}">Submit
+                        <button class="slds-button bt_main" style="text-align-last:right" title="Submit" onclick="{!c.handleComplain}">Submit
                         </button>
                         <!--                        <div onclick="{!c.handleComplain}" data-value="{!}">-->
                         <!--                            <lightning:button label="Remove" iconName="utility:delete" iconPosition="left"  variant="destructive" value="123"/>-->

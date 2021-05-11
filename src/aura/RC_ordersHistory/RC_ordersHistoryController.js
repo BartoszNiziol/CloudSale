@@ -54,9 +54,18 @@
                 console.log(state+' complain handle');
                 if (state == "SUCCESS") {
                      helper.toast('Success','Your complain has been submited','success');
+                     let actionClose = component.get("c.closeModal");
+                     action.setCallback(this, function (response) {
+
+                     });
+                     $A.enqueueAction(actionClose);
+
                 }else{
                  helper.toast('Submit complain failed',response.getError()[0].message,'error');
-                }
+
+
+                 }
+
             });
             $A.enqueueAction(action);
 

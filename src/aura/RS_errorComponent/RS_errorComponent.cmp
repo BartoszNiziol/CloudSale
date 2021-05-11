@@ -1,7 +1,0 @@
-<!--
- - Created by BRITENET on 27.04.2021.
- -->
-
-<aura:component description="RS_errorComponent" implements="forceCommunity:availableForAllPageTypes">
-
-</aura:component>
